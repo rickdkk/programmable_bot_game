@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bofi3sthdubh8"]
+
+[ext_resource type="Script" path="res://gui/hud.gd" id="1_wbmrn"]
+[ext_resource type="Texture2D" uid="uid://cd7oyc56ehkx1" path="res://assets/sprites/coin.png" id="2_s7owi"]
+[ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="3_desw5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_38ys3"]
+font = ExtResource("3_desw5")
+font_size = 48
+shadow_color = Color(0, 0, 0, 0.376471)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ygvvi"]
+font = ExtResource("3_desw5")
+font_size = 32
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_wbmrn")
+
+[node name="Icon" type="TextureRect" parent="."]
+offset_left = 57.0
+offset_top = 67.0
+offset_right = 313.0
+offset_bottom = 323.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_s7owi")
+
+[node name="x" type="Label" parent="."]
+offset_left = 112.0
+offset_top = 64.0
+offset_right = 144.0
+offset_bottom = 123.0
+text = "×"
+label_settings = SubResource("LabelSettings_38ys3")
+
+[node name="Coins" type="Label" parent="."]
+offset_left = 144.0
+offset_top = 64.0
+offset_right = 368.0
+offset_bottom = 123.0
+text = "0"
+label_settings = SubResource("LabelSettings_38ys3")
+
+[node name="FPSLabel" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 9.0
+offset_right = 65.0
+offset_bottom = 50.0
+text = "FPS"
+label_settings = SubResource("LabelSettings_ygvvi")

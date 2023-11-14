@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c8up71en5djgm"]
 
-[ext_resource type="PackedScene" uid="uid://biyd6x403gvny" path="res://models/platform-falling.glb" id="1_gkggt"]
+[ext_resource type="PackedScene" uid="uid://biyd6x403gvny" path="res://assets/models/platform-falling.glb" id="1_gkggt"]
 [ext_resource type="Script" path="res://objects/platform_falling.gd" id="2_6ganw"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4mmvt"]
