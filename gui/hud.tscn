@@ -18,27 +18,27 @@ font_size = 32
 script = ExtResource("1_wbmrn")
 
 [node name="Icon" type="TextureRect" parent="."]
-offset_left = 57.0
-offset_top = 67.0
-offset_right = 313.0
-offset_bottom = 323.0
-scale = Vector2(0.2, 0.2)
+offset_left = 47.0
+offset_top = 60.0
+offset_right = 175.0
+offset_bottom = 188.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_s7owi")
-
-[node name="x" type="Label" parent="."]
-offset_left = 112.0
-offset_top = 64.0
-offset_right = 144.0
-offset_bottom = 123.0
-text = "×"
-label_settings = SubResource("LabelSettings_38ys3")
 
 [node name="Coins" type="Label" parent="."]
 offset_left = 144.0
 offset_top = 64.0
-offset_right = 368.0
+offset_right = 175.0
 offset_bottom = 123.0
 text = "0"
+label_settings = SubResource("LabelSettings_38ys3")
+
+[node name="x" type="Label" parent="."]
+offset_left = 112.0
+offset_top = 64.0
+offset_right = 141.0
+offset_bottom = 123.0
+text = "×"
 label_settings = SubResource("LabelSettings_38ys3")
 
 [node name="FPSLabel" type="Label" parent="."]
