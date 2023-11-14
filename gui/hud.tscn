@@ -1,12 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://bofi3sthdubh8"]
+[gd_scene load_steps=19 format=3 uid="uid://bofi3sthdubh8"]
 
 [ext_resource type="Script" path="res://gui/hud.gd" id="1_wbmrn"]
+[ext_resource type="Texture2D" uid="uid://ddipokcby65ms" path="res://gui/left_arrow.tres" id="2_14ctf"]
+[ext_resource type="Texture2D" uid="uid://d0pubx125df61" path="res://assets/sprites/Button_small.png" id="2_k85o2"]
 [ext_resource type="Texture2D" uid="uid://cd7oyc56ehkx1" path="res://assets/sprites/coin.png" id="2_s7owi"]
+[ext_resource type="Texture2D" uid="uid://3hlbhn1suwnk" path="res://gui/right_arrow.tres" id="3_0v3hh"]
 [ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="3_desw5"]
+[ext_resource type="Texture2D" uid="uid://uart0hpoghpr" path="res://gui/up_arrow.tres" id="4_5u2fe"]
+[ext_resource type="Texture2D" uid="uid://c18hbslk8wgta" path="res://gui/down_arrow.tres" id="5_ico45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5feg"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(1547, 377, 90, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wroju"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(1853, 377, 91, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn7qn"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(405, 595, 90, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3gwc"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(405, 486, 90, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8h66"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(405, 704, 90, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0bt8"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(405, 813, 90, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7rib"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(1751, 268, 91, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2qdk"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(1853, 268, 91, 95)
 
 [sub_resource type="LabelSettings" id="LabelSettings_38ys3"]
 font = ExtResource("3_desw5")
-font_size = 48
+font_size = 56
 shadow_color = Color(0, 0, 0, 0.376471)
 shadow_offset = Vector2(2, 2)
 
@@ -17,11 +54,55 @@ font_size = 32
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_wbmrn")
 
+[node name="InputHBox" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -119.0
+offset_right = 188.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GoButton" type="TextureButton" parent="InputHBox"]
+layout_mode = 2
+disabled = true
+texture_normal = SubResource("AtlasTexture_t5feg")
+texture_disabled = SubResource("AtlasTexture_wroju")
+
+[node name="LeftButton" type="TextureButton" parent="InputHBox"]
+layout_mode = 2
+texture_normal = ExtResource("2_14ctf")
+texture_disabled = SubResource("AtlasTexture_wn7qn")
+
+[node name="RightButton" type="TextureButton" parent="InputHBox"]
+layout_mode = 2
+texture_normal = ExtResource("3_0v3hh")
+texture_disabled = SubResource("AtlasTexture_b3gwc")
+
+[node name="UpButton" type="TextureButton" parent="InputHBox"]
+layout_mode = 2
+texture_normal = ExtResource("4_5u2fe")
+texture_disabled = SubResource("AtlasTexture_v8h66")
+
+[node name="DownButton" type="TextureButton" parent="InputHBox"]
+layout_mode = 2
+texture_normal = ExtResource("5_ico45")
+texture_disabled = SubResource("AtlasTexture_o0bt8")
+
+[node name="DeleteButton" type="TextureButton" parent="InputHBox"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_j7rib")
+texture_disabled = SubResource("AtlasTexture_l2qdk")
+
 [node name="Icon" type="TextureRect" parent="."]
 offset_left = 47.0
-offset_top = 60.0
+offset_top = 63.0
 offset_right = 175.0
-offset_bottom = 188.0
+offset_bottom = 191.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_s7owi")
 
@@ -48,3 +129,25 @@ offset_right = 65.0
 offset_bottom = 50.0
 text = "FPS"
 label_settings = SubResource("LabelSettings_ygvvi")
+
+[node name="ActionsVBox" type="VBoxContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -308.5
+offset_right = -1.0
+offset_bottom = 578.5
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+alignment = 2
+
+[connection signal="pressed" from="InputHBox/GoButton" to="." method="_on_go_button_pressed"]
+[connection signal="pressed" from="InputHBox/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="InputHBox/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="InputHBox/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="InputHBox/DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="pressed" from="InputHBox/DeleteButton" to="." method="_on_delete_button_pressed"]
