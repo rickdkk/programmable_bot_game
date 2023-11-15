@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dtjvjdjl8cs6e" path="res://assets/models/flag.glb" id="1_kks1n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eg2hu"]
-size = Vector3(0.25, 0.5, 0.25)
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Flag" type="Area3D"]
 
