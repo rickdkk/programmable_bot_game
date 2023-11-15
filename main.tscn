@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=12 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://assets/main-environment.tres" id="1_5uy3d"]
 [ext_resource type="Script" path="res://main.gd" id="1_o8tir"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cnymdajj1vsqm" path="res://objects/platform.tscn" id="6_sdmev"]
 [ext_resource type="PackedScene" uid="uid://b5o16873df3mx" path="res://objects/flag.tscn" id="7_ebg8u"]
 [ext_resource type="AudioStream" uid="uid://c1imfi6nnx7vc" path="res://assets/sounds/success-fanfare-trumpets-6185.ogg" id="9_qffb4"]
+[ext_resource type="AudioStream" uid="uid://bo52ytw5kyp3g" path="res://assets/sounds/fail-144746.mp3" id="11_4afsa"]
 [ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="13_drtpy"]
 
 [node name="Main" type="Node3D"]
@@ -113,5 +114,12 @@ shadow_opacity = 0.75
 stream = ExtResource("9_qffb4")
 volume_db = -10.0
 
+[node name="LoseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_4afsa")
+volume_db = -10.0
+
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
+[connection signal="sequence_finished" from="Player" to="." method="_on_player_sequence_finished"]
 [connection signal="body_entered" from="World/Flag" to="." method="_on_flag_body_entered"]
+[connection signal="go_button_pressed" from="HUD" to="." method="_on_hud_go_button_pressed"]

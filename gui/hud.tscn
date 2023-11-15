@@ -95,6 +95,7 @@ texture_disabled = SubResource("AtlasTexture_o0bt8")
 
 [node name="DeleteButton" type="TextureButton" parent="InputHBox"]
 layout_mode = 2
+disabled = true
 texture_normal = SubResource("AtlasTexture_j7rib")
 texture_disabled = SubResource("AtlasTexture_l2qdk")
 

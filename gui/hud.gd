@@ -1,25 +1,21 @@
 extends CanvasLayer
 
 signal actions_changed(current_actions: Array[MOVE_SET])
+signal go_button_pressed(current_actions: Array[MOVE_SET])
 
 @onready var fps_label := $FPSLabel as Label
 @onready var coin_label := $Coins as Label
 @onready var actions_box := $ActionsVBox as VBoxContainer
 @onready var button_box := $InputHBox as HBoxContainer
 @onready var go_button := $InputHBox/GoButton as TextureButton
+@onready var delete_button := $InputHBox/DeleteButton as TextureButton
 
-const SPRITES = {MOVE_SET.UP: preload("res://gui/up_arrow.tres"),
-				 MOVE_SET.DOWN: preload("res://gui/down_arrow.tres"),
+const SPRITES = {MOVE_SET.FORWARD: preload("res://gui/up_arrow.tres"),
+				 MOVE_SET.BACK: preload("res://gui/down_arrow.tres"),
 				 MOVE_SET.LEFT: preload("res://gui/left_arrow.tres"),
 				 MOVE_SET.RIGHT: preload("res://gui/right_arrow.tres")}
-enum MOVE_SET {UP, DOWN, LEFT, RIGHT}
+enum MOVE_SET {FORWARD, BACK, LEFT, RIGHT}
 var actions: Array[MOVE_SET]
-
-
-func _ready() -> void:
-	add_arrow(MOVE_SET.UP)
-	add_arrow(MOVE_SET.UP)
-	add_arrow(MOVE_SET.UP)
 
 
 func _process(_delta: float) -> void:
@@ -40,6 +36,7 @@ func add_arrow(action: MOVE_SET):
 	actions_changed.emit(actions)
 
 	go_button.disabled = false
+	delete_button.disabled = false
 
 
 func disable_input():
@@ -60,6 +57,7 @@ func _on_delete_button_pressed() -> void:
 
 	if not actions.size():
 		go_button.disabled = true
+		delete_button.disabled = true
 
 
 func _on_left_button_pressed() -> void:
@@ -71,12 +69,13 @@ func _on_right_button_pressed() -> void:
 
 
 func _on_up_button_pressed() -> void:
-	add_arrow(MOVE_SET.UP)
+	add_arrow(MOVE_SET.FORWARD)
 
 
 func _on_down_button_pressed() -> void:
-	add_arrow(MOVE_SET.DOWN)
+	add_arrow(MOVE_SET.BACK)
 
 
 func _on_go_button_pressed() -> void:
 	disable_input()
+	go_button_pressed.emit(actions)

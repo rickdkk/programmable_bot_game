@@ -73,10 +73,15 @@ scale_amount_curve = SubResource("Curve_xh1e2")
 stream = ExtResource("5_f3gvv")
 volume_db = -5.0
 pitch_scale = 1.25
-autoplay = true
 
 [node name="MoveDelayTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+autostart = true
+
+[node name="FloorDetector" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.277241, 0)
+target_position = Vector3(0, -2, 0)
+collide_with_areas = true
 
 [editable path="Character"]
