@@ -22,7 +22,7 @@ var moving := false
 var dead := false
 
 @onready var character_mesh := $Character as Node3D
-@onready var particles_trail := $ParticlesTrail as CPUParticles3D
+@onready var particles_trail := $GPUParticlesTrail as GPUParticles3D
 @onready var sound_footsteps := $SoundFootsteps as AudioStreamPlayer
 @onready var animation := $Character/AnimationPlayer as AnimationPlayer
 @onready var move_timer := $MoveDelayTimer as Timer
