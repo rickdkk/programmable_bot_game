@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://rt0yc1o43psl"]
+
+[ext_resource type="Texture2D" uid="uid://bs6puxrivhkk2" path="res://assets/sprites/particle.png" id="1_dbmhy"]
+
+[resource]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_dbmhy")
+billboard_mode = 1
+billboard_keep_scale = true
+proximity_fade_enabled = true

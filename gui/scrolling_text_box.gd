@@ -4,13 +4,7 @@ class_name ScrollingDialogBox
 @onready var _text_label := $RichTextLabel as RichTextLabel
 @onready var next_sprite := $NextSprite as Sprite2D
 
-var text_buffer: Array[String] = [
-	"Lorum ipsum dolor Lorum ipsum dolor Lorum ipsum dolor Lorum ipsum dolor Lorum ipsum dolor ",
-	"Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo Hallo "]
-
-
-func _ready() -> void:
-	_display_next_text()
+var text_buffer: Array[String] = []
 
 
 func _process(delta: float) -> void:

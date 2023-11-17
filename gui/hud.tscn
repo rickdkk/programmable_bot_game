@@ -172,6 +172,7 @@ scale = Vector2(0.7, 0.7)
 alignment = 2
 
 [node name="ScrollingTextBox" parent="." instance=ExtResource("10_fxmdk")]
+visible = false
 offset_top = -404.0
 offset_bottom = -138.0
 
