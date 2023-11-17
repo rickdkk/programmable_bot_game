@@ -7,6 +7,7 @@ signal go_button_pressed(current_actions: Array[MOVE_SET])
 @onready var coin_label := $Coins as Label
 @onready var actions_box := $ActionsVBox as VBoxContainer
 @onready var button_box := $InputHBox as HBoxContainer
+@onready var button_sound := $ButtonSound as AudioStreamPlayer
 @onready var go_button := $InputHBox/GoButton as TextureButton
 @onready var delete_button := $InputHBox/DeleteButton as TextureButton
 
@@ -37,6 +38,7 @@ func add_arrow(action: MOVE_SET):
 
 	go_button.disabled = false
 	delete_button.disabled = false
+	button_sound.play()
 
 
 func disable_input():
