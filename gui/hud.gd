@@ -1,4 +1,5 @@
 extends CanvasLayer
+class_name HUD
 
 signal actions_changed(current_actions: Array[MOVE_SET])
 signal go_button_pressed(current_actions: Array[MOVE_SET])
@@ -10,6 +11,7 @@ signal go_button_pressed(current_actions: Array[MOVE_SET])
 @onready var button_sound := $ButtonSound as AudioStreamPlayer
 @onready var go_button := $InputHBox/GoButton as TextureButton
 @onready var delete_button := $InputHBox/DeleteButton as TextureButton
+@onready var scrolling_text_box: TextureRect = $ScrollingTextBox as ScrollingDialogBox
 
 const SPRITES = {MOVE_SET.FORWARD: preload("res://gui/up_arrow.tres"),
 				 MOVE_SET.BACK: preload("res://gui/down_arrow.tres"),
@@ -81,3 +83,10 @@ func _on_down_button_pressed() -> void:
 func _on_go_button_pressed() -> void:
 	disable_input()
 	go_button_pressed.emit(actions)
+
+
+func display_text(text_buffer: Array[String]) -> void:
+	disable_input()
+	for text in text_buffer:
+		scrolling_text_box.add_new_text(text)
+

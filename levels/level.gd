@@ -4,6 +4,8 @@ class_name Level
 signal finished
 signal player_died
 
+@export var dialog_resource: DialogResource
+
 @onready var victory_sound := $VictorySound as AudioStreamPlayer
 @onready var lose_sound := $LoseSound as AudioStreamPlayer
 @onready var player := $Player as Player

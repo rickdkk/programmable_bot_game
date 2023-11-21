@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c1imfi6nnx7vc" path="res://assets/sounds/success-fanfare-trumpets-6185.ogg" id="10_hracs"]
 [ext_resource type="AudioStream" uid="uid://bo52ytw5kyp3g" path="res://assets/sounds/fail-144746.mp3" id="11_nrtsa"]
 
-[node name="Main" type="Node3D"]
+[node name="Level_02" type="Node3D"]
 script = ExtResource("1_7wica")
 
 [node name="Environment" type="WorldEnvironment" parent="."]

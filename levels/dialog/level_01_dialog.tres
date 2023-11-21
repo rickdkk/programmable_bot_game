@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://17tnmsymuwp3"]
+
+[ext_resource type="Script" path="res://levels/dialog/dialog_resource.gd" id="1_od38h"]
+
+[resource]
+script = ExtResource("1_od38h")
+start_dialog = Array[String](["Hallo allemaal, welkom bij dit geweldige spel", "Het kan allemaal nog veel mooier", "Ga nu maar even het level doen!"])
+finish_dialog = Array[String]([])

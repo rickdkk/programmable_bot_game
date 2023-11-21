@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://rgwhk65t7r1k"]
+[gd_scene load_steps=10 format=3 uid="uid://rgwhk65t7r1k"]
 
 [ext_resource type="Texture2D" uid="uid://k5pnxrk3bxq" path="res://assets/sprites/boxes.png" id="1_x5yfs"]
 [ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="2_bycxj"]
 [ext_resource type="Script" path="res://gui/scrolling_text_box.gd" id="2_sk8wp"]
 [ext_resource type="Texture2D" uid="uid://c4povfddgb70g" path="res://assets/sprites/next_arrow.png" id="4_jwunf"]
+[ext_resource type="AudioStream" uid="uid://bxdwkds7x26o0" path="res://assets/sounds/keyboard-typing-5997.ogg" id="5_hwr1u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eecuy"]
 atlas = ExtResource("1_x5yfs")
@@ -92,3 +93,7 @@ autoplay = "pulse"
 libraries = {
 "": SubResource("AnimationLibrary_n72ra")
 }
+
+[node name="TypingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hwr1u")
+volume_db = -12.0

@@ -30,10 +30,10 @@ var dead := false
 
 
 func _physics_process(delta):
-	if not move_timer.is_stopped():
+	if not move_timer.is_stopped():  # This creates the feel of step-by-step movement
 		return
 
-	if not floor_detector.is_colliding() and not dead:
+	if not floor_detector.is_colliding() and not dead: # TODO
 		_handle_falling()
 		return
 
