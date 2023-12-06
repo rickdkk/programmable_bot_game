@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cpuk5n8edgyki"]
+[gd_scene load_steps=13 format=3 uid="uid://cpuk5n8edgyki"]
 
 [ext_resource type="Script" path="res://gui/intro_screen.gd" id="1_p8snu"]
 [ext_resource type="PackedScene" uid="uid://rgwhk65t7r1k" path="res://gui/scrolling_text_box.tscn" id="2_0mtep"]
@@ -21,6 +21,51 @@ outline_color = Color(0, 0, 0, 1)
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4a6w"]
+font = ExtResource("4_vikpf")
+font_size = 95
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_dn5de"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollingTextBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 189)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TitleLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_2m62j"]
 resource_name = "start_game"
@@ -49,29 +94,14 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
-
-[sub_resource type="Animation" id="Animation_dn5de"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ScrollingTextBox:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(448, 189)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayButton:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TitleLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -110,6 +140,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="PlayButton" type="TextureButton" parent="."]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -141,6 +172,19 @@ grow_vertical = 2
 text = "Spelen"
 label_settings = SubResource("LabelSettings_0jote")
 metadata/_edit_lock_ = true
+
+[node name="TitleLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -449.0
+offset_top = 46.0
+offset_right = 449.0
+offset_bottom = 155.0
+grow_horizontal = 2
+text = "AI Zorg Robot Avonturen"
+label_settings = SubResource("LabelSettings_g4a6w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

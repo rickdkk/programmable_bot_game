@@ -42,4 +42,5 @@ func _display_next_text():
 	typing_sound.play()
 	var tween = create_tween()
 	tween.tween_property(_text_label, "visible_ratio", 1.0, 1.5)
+	await tween.finished
 	typing_sound.stop()

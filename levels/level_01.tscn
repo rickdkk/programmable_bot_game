@@ -47,6 +47,9 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.25, 0)
 [node name="platform2" parent="World/Platforms" instance=ExtResource("5_yrykr")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.74228e-08, -0.25, 1)
 
+[node name="platform7" parent="World/Platforms" instance=ExtResource("5_yrykr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.01992e-07, -0.25, 2)
+
 [node name="Clouds" type="Node3D" parent="World"]
 
 [node name="cube8" parent="World/Clouds" instance=ExtResource("6_ndmmh")]
@@ -69,9 +72,6 @@ transform = Transform3D(0.434046, -0.383402, 0.476557, 0.548431, 0.502673, -0.09
 
 [node name="cube14" parent="World/Clouds" instance=ExtResource("6_ndmmh")]
 transform = Transform3D(0.434046, -0.383402, 0.476557, 0.548431, 0.502673, -0.095096, -0.27079, 0.403513, 0.57127, -4.04682, 0.426599, 5.9272)
-
-[node name="platform7" parent="World" instance=ExtResource("5_yrykr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.01992e-07, -0.25, 2)
 
 [node name="Coins" type="Node3D" parent="World"]
 

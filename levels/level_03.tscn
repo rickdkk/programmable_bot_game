@@ -57,6 +57,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, -0.25, 3)
 [node name="platform6" parent="World/Platforms" instance=ExtResource("5_74rpr")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 9.53595e-08, -0.25, 3)
 
+[node name="platform7" parent="World/Platforms" instance=ExtResource("5_74rpr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.97232e-08, -0.25, 5)
+
+[node name="platform8" parent="World/Platforms" instance=ExtResource("5_74rpr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.93668e-09, -0.25, 4)
+
 [node name="Clouds" type="Node3D" parent="World"]
 
 [node name="cube8" parent="World/Clouds" instance=ExtResource("6_81ivk")]
@@ -80,31 +86,25 @@ transform = Transform3D(0.434046, -0.383402, 0.476557, 0.548431, 0.502673, -0.09
 [node name="cube14" parent="World/Clouds" instance=ExtResource("6_81ivk")]
 transform = Transform3D(0.434046, -0.383402, 0.476557, 0.548431, 0.502673, -0.095096, -0.27079, 0.403513, 0.57127, -4.04682, 0.426599, 5.9272)
 
-[node name="coin" parent="World" instance=ExtResource("7_gwpnc")]
+[node name="Coins" type="Node3D" parent="World"]
+
+[node name="coin" parent="World/Coins" instance=ExtResource("7_gwpnc")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.74228e-08, 0, 1)
 
-[node name="coin2" parent="World" instance=ExtResource("7_gwpnc")]
+[node name="coin2" parent="World/Coins" instance=ExtResource("7_gwpnc")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 1)
 
-[node name="coin3" parent="World" instance=ExtResource("7_gwpnc")]
+[node name="coin3" parent="World/Coins" instance=ExtResource("7_gwpnc")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 2)
 
-[node name="coin4" parent="World" instance=ExtResource("7_gwpnc")]
+[node name="coin4" parent="World/Coins" instance=ExtResource("7_gwpnc")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 3)
 
-[node name="coin5" parent="World" instance=ExtResource("7_gwpnc")]
+[node name="coin5" parent="World/Coins" instance=ExtResource("7_gwpnc")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 9.53595e-08, 0, 3)
 
-[node name="platform8" parent="World" instance=ExtResource("5_74rpr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.93668e-09, -0.25, 4)
-
-[node name="coin6" parent="World" instance=ExtResource("7_gwpnc")]
+[node name="coin6" parent="World/Coins" instance=ExtResource("7_gwpnc")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.93668e-09, 0, 4)
-
-[node name="platform7" parent="World" instance=ExtResource("5_74rpr")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 3.97232e-08, -0.25, 5)
-
-[node name="Coins" type="Node3D" parent="World"]
 
 [node name="Flag" parent="World" instance=ExtResource("8_imt6d")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.78675e-08, 0, 5.25)
@@ -127,4 +127,5 @@ volume_db = -10.0
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="sequence_finished" from="Player" to="." method="_on_player_sequence_finished"]
+[connection signal="body_entered" from="World/Flag" to="." method="_on_flag_body_entered"]
 [connection signal="go_button_pressed" from="HUD" to="." method="_on_hud_go_button_pressed"]

@@ -96,4 +96,4 @@ autoplay = "pulse"
 
 [node name="TypingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_hwr1u")
-volume_db = -12.0
+volume_db = -5.0

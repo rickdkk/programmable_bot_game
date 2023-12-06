@@ -13,11 +13,16 @@ func _ready() -> void:
 	await animation_player.animation_finished
 
 	scrolling_text_box.buffer_empty.connect(_on_instruction_finished)
-	scrolling_text_box.add_new_text("Hallo allemaal,
-In dit spel gaan we jullie iets vertellen over programmeren en kunstmatige intelligentie.", true)
-	scrolling_text_box.add_new_text("Je kan met de muis op de knoppen drukken. Vraag de
-docent voor hulp als je vast zit!")
+	scrolling_text_box.add_new_text("Hallo allemaal!
 
+In dit spel gaan we jullie iets vertellen over program-meren en kunstmatige intelligentie.", true)
+	scrolling_text_box.add_new_text("Het is tegenwoordig erg druk in de zorg! Er zijn heel veel patiënten, maar niet zo veel dokters.")
+	scrolling_text_box.add_new_text("In dit spel gaan we een robot maken die de dokters kan helpen. De robot is alleen nog niet zo slim...
+
+Hier hebben we jullie hulp voor nodig!")
+	scrolling_text_box.add_new_text("Jullie gaan de robot helpen om zijn weg door het ziekenhuis te vinden. Je kan met de muis op de knoppen drukken. Vraag de
+docent voor hulp als je vast zit!")
+	scrolling_text_box.add_new_text("Aan de slag!")
 
 
 func _on_instruction_finished():
