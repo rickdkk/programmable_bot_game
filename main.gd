@@ -4,11 +4,9 @@ var levels := [preload("res://levels/level_01.tscn"),
 			   preload("res://levels/level_02.tscn"),
 			   preload("res://levels/level_03.tscn")]
 var current_level: Level
-var current_level_scene
+var current_level_scene: PackedScene
 
-
-func _ready() -> void:
-	load_next_level()
+@onready var intro_screen: CanvasLayer = $IntroScreen
 
 
 func load_next_level():
@@ -31,3 +29,8 @@ func load_level(scene: PackedScene):
 	current_level.finished.connect(load_next_level)
 	current_level.player_died.connect(reload_level)
 	add_child(current_level)
+
+
+func _on_intro_screen_play_button_pressed() -> void:
+	intro_screen.hide()
+	load_next_level()

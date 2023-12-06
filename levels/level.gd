@@ -5,16 +5,21 @@ signal finished
 signal player_died
 
 @export var dialog_resource: DialogResource
+@export var level_name: String
 
 @onready var victory_sound := $VictorySound as AudioStreamPlayer
 @onready var lose_sound := $LoseSound as AudioStreamPlayer
 @onready var player := $Player as Player
+@onready var hud: HUD = $HUD
 
 enum MOVE_SET {FORWARD, BACK, LEFT, RIGHT}
-
 var moves := {MOVE_SET.FORWARD: Vector3.FORWARD, MOVE_SET.BACK: Vector3.BACK,
 			  MOVE_SET.LEFT: Vector3.LEFT, MOVE_SET.RIGHT: Vector3.RIGHT}
 var level_finished := false
+
+
+func _ready() -> void:
+	hud.set_level_text(level_name if level_name else "")
 
 
 func _on_flag_body_entered(body: Node3D) -> void:
@@ -38,6 +43,7 @@ func _on_player_sequence_finished() -> void:
 
 func _on_player_player_died() -> void:
 	_lose()
+
 
 func _lose() -> void:
 	if level_finished:

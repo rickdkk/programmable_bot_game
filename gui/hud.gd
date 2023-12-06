@@ -12,11 +12,12 @@ signal go_button_pressed(current_actions: Array[MOVE_SET])
 @onready var go_button := $InputHBox/GoButton as TextureButton
 @onready var delete_button := $InputHBox/DeleteButton as TextureButton
 @onready var scrolling_text_box: TextureRect = $ScrollingTextBox as ScrollingDialogBox
+@onready var level_label: Label = $LevelLabel
 
-const SPRITES = {MOVE_SET.FORWARD: preload("res://gui/up_arrow.tres"),
-				 MOVE_SET.BACK: preload("res://gui/down_arrow.tres"),
-				 MOVE_SET.LEFT: preload("res://gui/left_arrow.tres"),
-				 MOVE_SET.RIGHT: preload("res://gui/right_arrow.tres")}
+const SPRITES = {MOVE_SET.FORWARD: preload("res://gui/resources/up_arrow.tres"),
+				 MOVE_SET.BACK: preload("res://gui/resources/down_arrow.tres"),
+				 MOVE_SET.LEFT: preload("res://gui/resources/left_arrow.tres"),
+				 MOVE_SET.RIGHT: preload("res://gui/resources/right_arrow.tres")}
 enum MOVE_SET {FORWARD, BACK, LEFT, RIGHT}
 var actions: Array[MOVE_SET]
 
@@ -52,7 +53,7 @@ func enable_input():
 	for button in button_box.get_children():
 		button.disabled = false
 
-
+#region Handle button presses
 func _on_delete_button_pressed() -> void:
 	if actions_box.get_child_count():
 		actions_box.get_child(0).queue_free()
@@ -83,10 +84,13 @@ func _on_down_button_pressed() -> void:
 func _on_go_button_pressed() -> void:
 	disable_input()
 	go_button_pressed.emit(actions)
-
+#endregion
 
 func display_text(text_buffer: Array[String]) -> void:
 	disable_input()
 	for text in text_buffer:
 		scrolling_text_box.add_new_text(text)
 
+
+func set_level_text(text: String) -> void:
+	level_label.text = text

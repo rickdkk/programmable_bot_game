@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://owwucw8olij2"]
+[gd_scene load_steps=5 format=3 uid="uid://owwucw8olij2"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_o8tir"]
+[ext_resource type="PackedScene" uid="uid://cpuk5n8edgyki" path="res://gui/intro_screen.tscn" id="2_3allu"]
+[ext_resource type="PackedScene" uid="uid://bofi3sthdubh8" path="res://gui/hud.tscn" id="2_7lm7g"]
+[ext_resource type="AudioStream" uid="uid://c78b0omsucqp6" path="res://assets/sounds/8-bit-arcade-138828.ogg" id="3_nt25j"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_o8tir")
+
+[node name="IntroScreen" parent="." instance=ExtResource("2_3allu")]
+
+[node name="HUD" parent="." instance=ExtResource("2_7lm7g")]
+visible = false
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nt25j")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="play_button_pressed" from="IntroScreen" to="." method="_on_intro_screen_play_button_pressed"]

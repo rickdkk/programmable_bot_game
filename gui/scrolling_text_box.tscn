@@ -89,10 +89,10 @@ scale = Vector2(0.12, 0.12)
 texture = ExtResource("4_jwunf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NextSprite"]
-autoplay = "pulse"
 libraries = {
 "": SubResource("AnimationLibrary_n72ra")
 }
+autoplay = "pulse"
 
 [node name="TypingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_hwr1u")

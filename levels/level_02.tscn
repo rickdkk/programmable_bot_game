@@ -1,30 +1,30 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxcxqld5hjfk5"]
+[gd_scene load_steps=12 format=3 uid="uid://crr0eu1sgyixu"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_7wica"]
-[ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://assets/main-environment.tres" id="2_xwlc7"]
-[ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://player/player.tscn" id="3_6lmd6"]
-[ext_resource type="Script" path="res://player/view.gd" id="4_qm2iq"]
-[ext_resource type="PackedScene" uid="uid://cnymdajj1vsqm" path="res://objects/platform.tscn" id="5_mnujg"]
-[ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="6_nuhpa"]
-[ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://objects/coin.tscn" id="7_5mn4s"]
-[ext_resource type="PackedScene" uid="uid://b5o16873df3mx" path="res://objects/flag.tscn" id="8_smv4b"]
-[ext_resource type="PackedScene" uid="uid://bofi3sthdubh8" path="res://gui/hud.tscn" id="9_3k0ou"]
-[ext_resource type="AudioStream" uid="uid://c1imfi6nnx7vc" path="res://assets/sounds/success-fanfare-trumpets-6185.ogg" id="10_hracs"]
-[ext_resource type="AudioStream" uid="uid://bo52ytw5kyp3g" path="res://assets/sounds/fail-144746.mp3" id="11_nrtsa"]
+[ext_resource type="Script" path="res://levels/level.gd" id="1_wsuja"]
+[ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://assets/main-environment.tres" id="3_ydubu"]
+[ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://player/player.tscn" id="4_7m26u"]
+[ext_resource type="Script" path="res://player/view.gd" id="5_8y62x"]
+[ext_resource type="PackedScene" uid="uid://cnymdajj1vsqm" path="res://objects/platform.tscn" id="6_23v1m"]
+[ext_resource type="PackedScene" uid="uid://dy017k58p20sk" path="res://objects/cloud.tscn" id="7_v4yt1"]
+[ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://objects/coin.tscn" id="8_ndm44"]
+[ext_resource type="PackedScene" uid="uid://b5o16873df3mx" path="res://objects/flag.tscn" id="9_en08k"]
+[ext_resource type="PackedScene" uid="uid://bofi3sthdubh8" path="res://gui/hud.tscn" id="10_engy5"]
+[ext_resource type="AudioStream" uid="uid://c1imfi6nnx7vc" path="res://assets/sounds/success-fanfare-trumpets-6185.ogg" id="11_n7oou"]
+[ext_resource type="AudioStream" uid="uid://bo52ytw5kyp3g" path="res://assets/sounds/fail-144746.mp3" id="12_rffmx"]
 
 [node name="Level_02" type="Node3D"]
-script = ExtResource("1_7wica")
+script = ExtResource("1_wsuja")
+level_name = "Level 2"
 
 [node name="Environment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_xwlc7")
+environment = ExtResource("3_ydubu")
 
-[node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("3_6lmd6")]
+[node name="Player" parent="." instance=ExtResource("4_7m26u")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0)
-view = NodePath("../View")
 
 [node name="View" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906307, 3.83787e-07, 0, -0.219982)
-script = ExtResource("4_qm2iq")
+script = ExtResource("5_8y62x")
 target = NodePath("../Player")
 zoom_minimum = 6
 zoom_maximum = 10
@@ -34,92 +34,91 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 current = true
 fov = 40.0
 
-[node name="World" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="Platforms" type="Node3D" parent="World"]
-
-[node name="platform" parent="World/Platforms" instance=ExtResource("5_mnujg")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.25, 0)
-
-[node name="platform2" parent="World/Platforms" instance=ExtResource("5_mnujg")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.74228e-08, -0.25, 1)
-
-[node name="platform3" parent="World/Platforms" instance=ExtResource("5_mnujg")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.74846e-07, -0.25, 2)
-
-[node name="platform4" parent="World/Platforms" instance=ExtResource("5_mnujg")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.62268e-07, -0.25, 3)
-
-[node name="platform5" parent="World/Platforms" instance=ExtResource("5_mnujg")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, -0.25, 3)
-
-[node name="platform6" parent="World/Platforms" instance=ExtResource("5_mnujg")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, -0.25, 4)
-
-[node name="Clouds" type="Node3D" parent="World"]
-
-[node name="cube8" parent="World/Clouds" instance=ExtResource("6_nuhpa")]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.12423, 0.644972, 7.42221)
-
-[node name="cube9" parent="World/Clouds" instance=ExtResource("6_nuhpa")]
-transform = Transform3D(0.68208, -0.214827, 0.22609, 0.252003, 0.699956, -0.0951672, -0.183744, 0.162516, 0.70875, 2.91011, 0.909022, 5.89501)
-
-[node name="cube10" parent="World/Clouds" instance=ExtResource("6_nuhpa")]
-transform = Transform3D(0.709972, 0.198029, 0.138652, -0.157093, 0.704892, -0.202358, -0.183743, 0.162517, 0.70875, 2.88403, 0.869608, 0.622215)
-
-[node name="cube11" parent="World/Clouds" instance=ExtResource("6_nuhpa")]
-transform = Transform3D(0.254803, 0.494272, 0.50326, -0.497076, 0.505472, -0.244772, -0.50049, -0.250387, 0.499315, -1.94015, -0.0883283, 2.63706)
-
-[node name="cube12" parent="World/Clouds" instance=ExtResource("6_nuhpa")]
-transform = Transform3D(-0.549951, -0.371809, 0.349016, -0.497077, 0.505471, -0.244771, -0.113879, -0.4108, -0.61707, -1.67446, 0.668558, 4.87086)
-
-[node name="cube13" parent="World/Clouds" instance=ExtResource("6_nuhpa")]
-transform = Transform3D(0.434046, -0.383402, 0.476557, 0.548431, 0.502673, -0.095096, -0.27079, 0.403513, 0.57127, -14.3045, 2.03819, -8.24191)
-
-[node name="cube14" parent="World/Clouds" instance=ExtResource("6_nuhpa")]
-transform = Transform3D(0.434046, -0.383402, 0.476557, 0.548431, 0.502673, -0.095096, -0.27079, 0.403513, 0.57127, -4.04682, 0.426599, 5.9272)
-
-[node name="coin" parent="World" instance=ExtResource("7_5mn4s")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.74228e-08, 0, 1)
-
-[node name="coin2" parent="World" instance=ExtResource("7_5mn4s")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.74846e-07, 0, 2)
-
-[node name="coin3" parent="World" instance=ExtResource("7_5mn4s")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.62268e-07, 0, 3)
-
-[node name="coin4" parent="World" instance=ExtResource("7_5mn4s")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 3)
-
-[node name="coin5" parent="World" instance=ExtResource("7_5mn4s")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 4)
-
-[node name="platform7" parent="World" instance=ExtResource("5_mnujg")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, -0.25, 5)
-
-[node name="Coins" type="Node3D" parent="World"]
-
-[node name="Flag" parent="World" instance=ExtResource("8_smv4b")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 5.25)
-
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.422618, 0.694272, -0.582564, -1.2595e-08, 0.642788, 0.766044, 0.906308, -0.323744, 0.271654, -1.15136e-06, -1, -17.78)
 shadow_enabled = true
 shadow_opacity = 0.75
 
-[node name="HUD" parent="." instance=ExtResource("9_3k0ou")]
+[node name="World" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Platforms" type="Node3D" parent="World"]
+
+[node name="platform" parent="World/Platforms" instance=ExtResource("6_23v1m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.25, 0)
+
+[node name="platform2" parent="World/Platforms" instance=ExtResource("6_23v1m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 8.74228e-08, -0.25, 1)
+
+[node name="platform3" parent="World/Platforms" instance=ExtResource("6_23v1m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.74846e-07, -0.25, 2)
+
+[node name="platform4" parent="World/Platforms" instance=ExtResource("6_23v1m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.62268e-07, -0.25, 3)
+
+[node name="platform5" parent="World/Platforms" instance=ExtResource("6_23v1m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, -0.25, 3)
+
+[node name="platform6" parent="World/Platforms" instance=ExtResource("6_23v1m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, -0.25, 4)
+
+[node name="Clouds" type="Node3D" parent="World"]
+
+[node name="cube8" parent="World/Clouds" instance=ExtResource("7_v4yt1")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 1.12423, 0.644972, 7.42221)
+
+[node name="cube9" parent="World/Clouds" instance=ExtResource("7_v4yt1")]
+transform = Transform3D(0.68208, -0.214827, 0.22609, 0.252003, 0.699956, -0.0951672, -0.183744, 0.162516, 0.70875, 2.91011, 0.909022, 5.89501)
+
+[node name="cube10" parent="World/Clouds" instance=ExtResource("7_v4yt1")]
+transform = Transform3D(0.709972, 0.198029, 0.138652, -0.157093, 0.704892, -0.202358, -0.183743, 0.162517, 0.70875, 2.88403, 0.869608, 0.622215)
+
+[node name="cube11" parent="World/Clouds" instance=ExtResource("7_v4yt1")]
+transform = Transform3D(0.254803, 0.494272, 0.50326, -0.497076, 0.505472, -0.244772, -0.50049, -0.250387, 0.499315, -1.94015, -0.0883283, 2.63706)
+
+[node name="cube12" parent="World/Clouds" instance=ExtResource("7_v4yt1")]
+transform = Transform3D(-0.549951, -0.371809, 0.349016, -0.497077, 0.505471, -0.244771, -0.113879, -0.4108, -0.61707, -1.67446, 0.668558, 4.87086)
+
+[node name="cube13" parent="World/Clouds" instance=ExtResource("7_v4yt1")]
+transform = Transform3D(0.434046, -0.383402, 0.476557, 0.548431, 0.502673, -0.095096, -0.27079, 0.403513, 0.57127, -14.3045, 2.03819, -8.24191)
+
+[node name="cube14" parent="World/Clouds" instance=ExtResource("7_v4yt1")]
+transform = Transform3D(0.434046, -0.383402, 0.476557, 0.548431, 0.502673, -0.095096, -0.27079, 0.403513, 0.57127, -4.04682, 0.426599, 5.9272)
+
+[node name="coin" parent="World" instance=ExtResource("8_ndm44")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.74228e-08, 0, 1)
+
+[node name="coin2" parent="World" instance=ExtResource("8_ndm44")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.74846e-07, 0, 2)
+
+[node name="coin3" parent="World" instance=ExtResource("8_ndm44")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.62268e-07, 0, 3)
+
+[node name="coin4" parent="World" instance=ExtResource("8_ndm44")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 3)
+
+[node name="coin5" parent="World" instance=ExtResource("8_ndm44")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, 0, 4)
+
+[node name="platform7" parent="World" instance=ExtResource("6_23v1m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1, -0.25, 5)
+
+[node name="Coins" type="Node3D" parent="World"]
+
+[node name="Flag" parent="World" instance=ExtResource("9_en08k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 5.25)
+
+[node name="HUD" parent="." instance=ExtResource("10_engy5")]
 
 [node name="VictorySound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_hracs")
+stream = ExtResource("11_n7oou")
 volume_db = -10.0
 
 [node name="LoseSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_nrtsa")
+stream = ExtResource("12_rffmx")
 volume_db = -10.0
 
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="sequence_finished" from="Player" to="." method="_on_player_sequence_finished"]
-[connection signal="body_entered" from="World/Flag" to="." method="_on_flag_body_entered"]
 [connection signal="go_button_pressed" from="HUD" to="." method="_on_hud_go_button_pressed"]

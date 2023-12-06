@@ -1,0 +1,150 @@
+[gd_scene load_steps=12 format=3 uid="uid://cpuk5n8edgyki"]
+
+[ext_resource type="Script" path="res://gui/intro_screen.gd" id="1_p8snu"]
+[ext_resource type="PackedScene" uid="uid://rgwhk65t7r1k" path="res://gui/scrolling_text_box.tscn" id="2_0mtep"]
+[ext_resource type="Texture2D" uid="uid://dxv0fyycpdmev" path="res://assets/images/intro_background.png" id="2_iyi26"]
+[ext_resource type="Texture2D" uid="uid://d0pubx125df61" path="res://assets/sprites/Button_small.png" id="3_ntclw"]
+[ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="4_vikpf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef2hm"]
+atlas = ExtResource("3_ntclw")
+region = Rect2(314, 216, 213, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybppj"]
+atlas = ExtResource("3_ntclw")
+region = Rect2(771, 216, 213, 95)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0jote"]
+font = ExtResource("4_vikpf")
+font_size = 53
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="Animation" id="Animation_2m62j"]
+resource_name = "start_game"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollingTextBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(448, -332), Vector2(448, 189)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_dn5de"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollingTextBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 189)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayButton:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1abnw"]
+_data = {
+"RESET": SubResource("Animation_dn5de"),
+"start_game": SubResource("Animation_2m62j")
+}
+
+[node name="IntroScreen" type="CanvasLayer"]
+script = ExtResource("1_p8snu")
+
+[node name="IntroBackground" type="Sprite2D" parent="."]
+position = Vector2(960, 360)
+scale = Vector2(0.625, 0.703125)
+texture = ExtResource("2_iyi26")
+flip_h = true
+
+[node name="IntroBackground2" type="Sprite2D" parent="."]
+position = Vector2(320, 360)
+scale = Vector2(0.625, 0.703125)
+texture = ExtResource("2_iyi26")
+
+[node name="ScrollingTextBox" parent="." instance=ExtResource("2_0mtep")]
+anchors_preset = 8
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 448.0
+offset_top = 189.0
+offset_right = 832.0
+offset_bottom = 455.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayButton" type="TextureButton" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.5
+offset_top = -195.0
+offset_right = 106.5
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+disabled = true
+texture_normal = SubResource("AtlasTexture_ef2hm")
+texture_disabled = SubResource("AtlasTexture_ybppj")
+
+[node name="Label" type="Label" parent="PlayButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -37.5
+offset_right = 76.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Spelen"
+label_settings = SubResource("LabelSettings_0jote")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1abnw")
+}
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

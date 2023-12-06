@@ -1,16 +1,16 @@
-[gd_scene load_steps=26 format=3 uid="uid://bofi3sthdubh8"]
+[gd_scene load_steps=27 format=3 uid="uid://bofi3sthdubh8"]
 
 [ext_resource type="Script" path="res://gui/hud.gd" id="1_wbmrn"]
-[ext_resource type="Texture2D" uid="uid://ddipokcby65ms" path="res://gui/left_arrow.tres" id="2_14ctf"]
 [ext_resource type="Texture2D" uid="uid://d0pubx125df61" path="res://assets/sprites/Button_small.png" id="2_k85o2"]
 [ext_resource type="Texture2D" uid="uid://cd7oyc56ehkx1" path="res://assets/sprites/coin.png" id="2_s7owi"]
-[ext_resource type="Texture2D" uid="uid://3hlbhn1suwnk" path="res://gui/right_arrow.tres" id="3_0v3hh"]
+[ext_resource type="Texture2D" uid="uid://ddipokcby65ms" path="res://gui/resources/left_arrow.tres" id="3_7qy34"]
 [ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="3_desw5"]
-[ext_resource type="Texture2D" uid="uid://uart0hpoghpr" path="res://gui/up_arrow.tres" id="4_5u2fe"]
-[ext_resource type="Texture2D" uid="uid://c18hbslk8wgta" path="res://gui/down_arrow.tres" id="5_ico45"]
-[ext_resource type="Texture2D" uid="uid://bp66kib0laf0y" path="res://gui/delete_gray.tres" id="7_sw0du"]
-[ext_resource type="AudioStream" uid="uid://b7mt8x0nnli3x" path="res://assets/sounds/button-124476-short.ogg" id="9_1yffb"]
+[ext_resource type="Texture2D" uid="uid://3hlbhn1suwnk" path="res://gui/resources/right_arrow.tres" id="4_mw0nk"]
+[ext_resource type="Texture2D" uid="uid://uart0hpoghpr" path="res://gui/resources/up_arrow.tres" id="5_o32ta"]
+[ext_resource type="Texture2D" uid="uid://c18hbslk8wgta" path="res://gui/resources/down_arrow.tres" id="6_7e3xa"]
+[ext_resource type="Texture2D" uid="uid://bp66kib0laf0y" path="res://gui/resources/delete_gray.tres" id="7_huxj8"]
 [ext_resource type="PackedScene" uid="uid://rgwhk65t7r1k" path="res://gui/scrolling_text_box.tscn" id="10_fxmdk"]
+[ext_resource type="AudioStream" uid="uid://dsvfritp7unlk" path="res://assets/sounds/button-124476-shorter.ogg" id="11_d8eoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5feg"]
 atlas = ExtResource("2_k85o2")
@@ -70,6 +70,10 @@ shadow_offset = Vector2(2, 2)
 font = ExtResource("3_desw5")
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_wqad2"]
+font = ExtResource("3_desw5")
+font_size = 50
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_wbmrn")
 
@@ -95,25 +99,25 @@ texture_disabled = SubResource("AtlasTexture_wroju")
 
 [node name="LeftButton" type="TextureButton" parent="InputHBox"]
 layout_mode = 2
-texture_normal = ExtResource("2_14ctf")
+texture_normal = ExtResource("3_7qy34")
 texture_pressed = SubResource("AtlasTexture_fblp6")
 texture_disabled = SubResource("AtlasTexture_wn7qn")
 
 [node name="RightButton" type="TextureButton" parent="InputHBox"]
 layout_mode = 2
-texture_normal = ExtResource("3_0v3hh")
+texture_normal = ExtResource("4_mw0nk")
 texture_pressed = SubResource("AtlasTexture_w2k3y")
 texture_disabled = SubResource("AtlasTexture_b3gwc")
 
 [node name="UpButton" type="TextureButton" parent="InputHBox"]
 layout_mode = 2
-texture_normal = ExtResource("4_5u2fe")
+texture_normal = ExtResource("5_o32ta")
 texture_pressed = SubResource("AtlasTexture_3jiyb")
 texture_disabled = SubResource("AtlasTexture_v8h66")
 
 [node name="DownButton" type="TextureButton" parent="InputHBox"]
 layout_mode = 2
-texture_normal = ExtResource("5_ico45")
+texture_normal = ExtResource("6_7e3xa")
 texture_pressed = SubResource("AtlasTexture_1gg2i")
 texture_disabled = SubResource("AtlasTexture_o0bt8")
 
@@ -121,8 +125,8 @@ texture_disabled = SubResource("AtlasTexture_o0bt8")
 layout_mode = 2
 disabled = true
 texture_normal = SubResource("AtlasTexture_j7rib")
-texture_pressed = ExtResource("7_sw0du")
-texture_disabled = ExtResource("7_sw0du")
+texture_pressed = ExtResource("7_huxj8")
+texture_disabled = ExtResource("7_huxj8")
 
 [node name="Icon" type="TextureRect" parent="."]
 offset_left = 47.0
@@ -156,6 +160,18 @@ offset_bottom = 50.0
 text = "FPS"
 label_settings = SubResource("LabelSettings_ygvvi")
 
+[node name="LevelLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 24.0
+offset_right = 60.0
+offset_bottom = 65.0
+grow_horizontal = 2
+text = "Level: 01"
+label_settings = SubResource("LabelSettings_wqad2")
+
 [node name="ActionsVBox" type="VBoxContainer" parent="."]
 anchors_preset = 6
 anchor_left = 1.0
@@ -177,7 +193,7 @@ offset_top = -404.0
 offset_bottom = -138.0
 
 [node name="ButtonSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_1yffb")
+stream = ExtResource("11_d8eoq")
 volume_db = -10.0
 
 [connection signal="pressed" from="InputHBox/GoButton" to="." method="_on_go_button_pressed"]

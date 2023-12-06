@@ -10,7 +10,7 @@ signal buffer_empty
 var text_buffer: Array[String] = []
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not visible:
 		return
 
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	else:
 		next_sprite.hide()
 
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and _text_label.visible_ratio == 1.0:
 		if not text_buffer:
 			self.hide()
 			buffer_empty.emit()
@@ -27,10 +27,10 @@ func _process(delta: float) -> void:
 			_display_next_text()
 
 
-func add_new_text(text: String):
+func add_new_text(text: String, display_next: bool = false):
 	text_buffer.append(text)
 
-	if not self.visible:
+	if display_next:
 		_display_next_text()
 		self.show()
 

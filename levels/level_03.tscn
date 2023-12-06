@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1irtdav1r1ep"]
+[gd_scene load_steps=12 format=3 uid="uid://c51htgqc83s1o"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_75jh3"]
 [ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://assets/main-environment.tres" id="2_1gj62"]
@@ -14,13 +14,13 @@
 
 [node name="Level_03" type="Node3D"]
 script = ExtResource("1_75jh3")
+level_name = "Level 3"
 
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_1gj62")
 
-[node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("3_hnm4k")]
+[node name="Player" parent="." instance=ExtResource("3_hnm4k")]
 transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0)
-view = NodePath("../View")
 
 [node name="View" type="Node3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906307, 3.83787e-07, 0, -0.219982)
@@ -127,5 +127,4 @@ volume_db = -10.0
 [connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="sequence_finished" from="Player" to="." method="_on_player_sequence_finished"]
-[connection signal="body_entered" from="World/Flag" to="." method="_on_flag_body_entered"]
 [connection signal="go_button_pressed" from="HUD" to="." method="_on_hud_go_button_pressed"]

@@ -12,6 +12,13 @@ signal player_died
 @export var movement_speed := 2.5
 @export var angle_speed := 10.
 
+@onready var character_mesh := $Character as Node3D
+@onready var particles_trail := $GPUParticlesTrail as GPUParticles3D
+@onready var sound_footsteps := $SoundFootsteps as AudioStreamPlayer
+@onready var animation := $Character/AnimationPlayer as AnimationPlayer
+@onready var move_timer := $MoveDelayTimer as Timer
+@onready var floor_detector := $FloorDetector as RayCast3D
+
 const ROTATIONS := {Vector3.FORWARD: 0., Vector3.BACK: PI, Vector3.LEFT: 0.5 * PI, Vector3.RIGHT: 1.5 * PI, Vector3.ZERO: 0.}
 var movement_velocity: Vector3
 var rotation_direction := Vector3.FORWARD
@@ -20,13 +27,6 @@ var _move_sequence: Array[Vector3]
 var coins := 0
 var moving := false
 var dead := false
-
-@onready var character_mesh := $Character as Node3D
-@onready var particles_trail := $GPUParticlesTrail as GPUParticles3D
-@onready var sound_footsteps := $SoundFootsteps as AudioStreamPlayer
-@onready var animation := $Character/AnimationPlayer as AnimationPlayer
-@onready var move_timer := $MoveDelayTimer as Timer
-@onready var floor_detector := $FloorDetector as RayCast3D
 
 
 func _physics_process(delta):
@@ -59,6 +59,7 @@ func _select_new_position(delta_pos: Vector3):
 
 func _handle_falling():
 	dead = true
+	_move_sequence.clear()
 	player_died.emit()
 	animation.play("jump")
 
