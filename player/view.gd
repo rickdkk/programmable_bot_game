@@ -4,15 +4,15 @@ extends Node3D
 @export var target: Player
 
 @export_group("Zoom")
-@export var zoom_minimum = 16
-@export var zoom_maximum = 4
-@export var zoom_speed = 10
+@export var zoom_minimum := 8.0
+@export var zoom_maximum := 4.0
+@export var zoom_speed := 20.0
 
 @export_group("Rotation")
 @export var rotation_speed = 120
 
 var camera_rotation:Vector3
-var zoom = 10
+var zoom = 6
 
 @onready var camera = $Camera
 
@@ -38,5 +38,10 @@ func handle_input(delta):
 	camera_rotation.x = clamp(camera_rotation.x, -80, -10)
 
 	# Zooming
-	zoom += Input.get_axis("zoom_in", "zoom_out") * zoom_speed * delta
+	var zoom_direction = 0
+	if Input.is_action_just_pressed("zoom_out"):
+		zoom_direction = 1
+	elif Input.is_action_just_pressed("zoom_in"):
+		zoom_direction = -1
+	zoom += zoom_direction * zoom_speed * delta
 	zoom = clamp(zoom, zoom_maximum, zoom_minimum)

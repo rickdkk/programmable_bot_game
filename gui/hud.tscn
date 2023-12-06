@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bofi3sthdubh8"]
+[gd_scene load_steps=25 format=3 uid="uid://bofi3sthdubh8"]
 
 [ext_resource type="Script" path="res://gui/hud.gd" id="1_wbmrn"]
 [ext_resource type="Texture2D" uid="uid://d0pubx125df61" path="res://assets/sprites/Button_small.png" id="2_k85o2"]
@@ -7,7 +7,6 @@
 [ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="3_desw5"]
 [ext_resource type="Texture2D" uid="uid://3hlbhn1suwnk" path="res://gui/resources/right_arrow.tres" id="4_mw0nk"]
 [ext_resource type="Texture2D" uid="uid://uart0hpoghpr" path="res://gui/resources/up_arrow.tres" id="5_o32ta"]
-[ext_resource type="Texture2D" uid="uid://c18hbslk8wgta" path="res://gui/resources/down_arrow.tres" id="6_7e3xa"]
 [ext_resource type="Texture2D" uid="uid://bp66kib0laf0y" path="res://gui/resources/delete_gray.tres" id="7_huxj8"]
 [ext_resource type="PackedScene" uid="uid://rgwhk65t7r1k" path="res://gui/scrolling_text_box.tscn" id="10_fxmdk"]
 [ext_resource type="AudioStream" uid="uid://dsvfritp7unlk" path="res://assets/sounds/button-124476-shorter.ogg" id="11_d8eoq"]
@@ -26,19 +25,11 @@ region = Rect2(1853, 377, 91, 95)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fblp6"]
 atlas = ExtResource("2_k85o2")
-region = Rect2(200, 595, 91, 95)
+region = Rect2(1649, 595, 90, 95)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wn7qn"]
 atlas = ExtResource("2_k85o2")
-region = Rect2(405, 595, 90, 95)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w2k3y"]
-atlas = ExtResource("2_k85o2")
-region = Rect2(200, 486, 91, 95)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b3gwc"]
-atlas = ExtResource("2_k85o2")
-region = Rect2(405, 486, 90, 95)
+region = Rect2(1853, 595, 91, 95)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3jiyb"]
 atlas = ExtResource("2_k85o2")
@@ -48,13 +39,13 @@ region = Rect2(200, 704, 91, 95)
 atlas = ExtResource("2_k85o2")
 region = Rect2(405, 704, 90, 95)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1gg2i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2k3y"]
 atlas = ExtResource("2_k85o2")
-region = Rect2(200, 813, 91, 95)
+region = Rect2(1649, 595, 90, 95)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o0bt8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3gwc"]
 atlas = ExtResource("2_k85o2")
-region = Rect2(405, 813, 90, 95)
+region = Rect2(1853, 595, 91, 95)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7rib"]
 atlas = ExtResource("2_k85o2")
@@ -73,6 +64,10 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_wqad2"]
 font = ExtResource("3_desw5")
 font_size = 50
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqcdm"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(1547, 159, 90, 95)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_wbmrn")
@@ -102,12 +97,7 @@ layout_mode = 2
 texture_normal = ExtResource("3_7qy34")
 texture_pressed = SubResource("AtlasTexture_fblp6")
 texture_disabled = SubResource("AtlasTexture_wn7qn")
-
-[node name="RightButton" type="TextureButton" parent="InputHBox"]
-layout_mode = 2
-texture_normal = ExtResource("4_mw0nk")
-texture_pressed = SubResource("AtlasTexture_w2k3y")
-texture_disabled = SubResource("AtlasTexture_b3gwc")
+flip_h = true
 
 [node name="UpButton" type="TextureButton" parent="InputHBox"]
 layout_mode = 2
@@ -115,11 +105,11 @@ texture_normal = ExtResource("5_o32ta")
 texture_pressed = SubResource("AtlasTexture_3jiyb")
 texture_disabled = SubResource("AtlasTexture_v8h66")
 
-[node name="DownButton" type="TextureButton" parent="InputHBox"]
+[node name="RightButton" type="TextureButton" parent="InputHBox"]
 layout_mode = 2
-texture_normal = ExtResource("6_7e3xa")
-texture_pressed = SubResource("AtlasTexture_1gg2i")
-texture_disabled = SubResource("AtlasTexture_o0bt8")
+texture_normal = ExtResource("4_mw0nk")
+texture_pressed = SubResource("AtlasTexture_w2k3y")
+texture_disabled = SubResource("AtlasTexture_b3gwc")
 
 [node name="DeleteButton" type="TextureButton" parent="InputHBox"]
 layout_mode = 2
@@ -129,34 +119,34 @@ texture_pressed = ExtResource("7_huxj8")
 texture_disabled = ExtResource("7_huxj8")
 
 [node name="Icon" type="TextureRect" parent="."]
-offset_left = 47.0
-offset_top = 63.0
-offset_right = 175.0
-offset_bottom = 191.0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 148.0
+offset_bottom = 136.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_s7owi")
 
 [node name="Coins" type="Label" parent="."]
-offset_left = 144.0
-offset_top = 64.0
-offset_right = 175.0
-offset_bottom = 123.0
+offset_left = 124.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 73.0
 text = "0"
 label_settings = SubResource("LabelSettings_38ys3")
 
 [node name="x" type="Label" parent="."]
-offset_left = 112.0
-offset_top = 64.0
-offset_right = 141.0
-offset_bottom = 123.0
+offset_left = 84.0
+offset_top = 8.0
+offset_right = 118.0
+offset_bottom = 73.0
 text = "×"
 label_settings = SubResource("LabelSettings_38ys3")
 
 [node name="FPSLabel" type="Label" parent="."]
-offset_left = 15.0
-offset_top = 9.0
-offset_right = 65.0
-offset_bottom = 50.0
+offset_left = 26.0
+offset_top = 88.0
+offset_right = 76.0
+offset_bottom = 128.0
 text = "FPS"
 label_settings = SubResource("LabelSettings_ygvvi")
 
@@ -164,27 +154,33 @@ label_settings = SubResource("LabelSettings_ygvvi")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -60.0
-offset_top = 24.0
-offset_right = 60.0
-offset_bottom = 65.0
+offset_left = -92.5
+offset_top = 16.0
+offset_right = 92.5
+offset_bottom = 74.0
 grow_horizontal = 2
-text = "Level: 01"
+text = "Level"
 label_settings = SubResource("LabelSettings_wqad2")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ActionsVBox" type="VBoxContainer" parent="."]
-anchors_preset = 6
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -92.0
-offset_top = -308.5
-offset_right = -1.0
-offset_bottom = 578.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = 96.0
+offset_right = 26.0
+offset_bottom = 230.0
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
+horizontal_scroll_mode = 0
+
+[node name="ActionsVBox" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 alignment = 2
 
 [node name="ScrollingTextBox" parent="." instance=ExtResource("10_fxmdk")]
@@ -196,9 +192,20 @@ offset_bottom = -138.0
 stream = ExtResource("11_d8eoq")
 volume_db = -10.0
 
+[node name="SettingsButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -89.0
+offset_top = 16.0
+offset_right = 1.0
+offset_bottom = 111.0
+grow_horizontal = 0
+scale = Vector2(0.7, 0.7)
+texture_normal = SubResource("AtlasTexture_pqcdm")
+
 [connection signal="pressed" from="InputHBox/GoButton" to="." method="_on_go_button_pressed"]
 [connection signal="pressed" from="InputHBox/LeftButton" to="." method="_on_left_button_pressed"]
-[connection signal="pressed" from="InputHBox/RightButton" to="." method="_on_right_button_pressed"]
 [connection signal="pressed" from="InputHBox/UpButton" to="." method="_on_up_button_pressed"]
-[connection signal="pressed" from="InputHBox/DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="pressed" from="InputHBox/RightButton" to="." method="_on_right_button_pressed"]
 [connection signal="pressed" from="InputHBox/DeleteButton" to="." method="_on_delete_button_pressed"]

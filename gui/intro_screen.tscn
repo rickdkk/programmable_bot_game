@@ -25,7 +25,7 @@ shadow_offset = Vector2(0, 2)
 [sub_resource type="LabelSettings" id="LabelSettings_g4a6w"]
 font = ExtResource("4_vikpf")
 font_size = 95
-shadow_size = 10
+shadow_size = 20
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_dn5de"]
@@ -57,19 +57,19 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TitleLabel:visible")
+tracks/2/path = NodePath("TitleLabel:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_2m62j"]
 resource_name = "start_game"
-length = 3.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -77,10 +77,10 @@ tracks/0/path = NodePath("ScrollingTextBox:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(2.5, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(448, -332), Vector2(448, 189)]
+"values": [Vector2(448, -332), Vector2(448, 237)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -89,7 +89,7 @@ tracks/1/path = NodePath("PlayButton:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -97,14 +97,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TitleLabel:visible")
-tracks/2/interp = 1
+tracks/2/path = NodePath("TitleLabel:modulate")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1abnw"]
@@ -147,9 +147,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -106.5
-offset_top = -195.0
+offset_top = -158.0
 offset_right = 106.5
-offset_bottom = -100.0
+offset_bottom = -63.0
 grow_horizontal = 2
 grow_vertical = 0
 disabled = true
@@ -174,7 +174,7 @@ label_settings = SubResource("LabelSettings_0jote")
 metadata/_edit_lock_ = true
 
 [node name="TitleLabel" type="Label" parent="."]
-visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

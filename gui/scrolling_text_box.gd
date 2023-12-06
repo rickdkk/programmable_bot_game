@@ -19,7 +19,8 @@ func _process(_delta: float) -> void:
 	else:
 		next_sprite.hide()
 
-	if Input.is_action_just_pressed("ui_accept") and _text_label.visible_ratio == 1.0:
+	var button_pressed = (Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT))
+	if  button_pressed and _text_label.visible_ratio == 1.0:
 		if not text_buffer:
 			self.hide()
 			buffer_empty.emit()

@@ -13,24 +13,30 @@ signal player_died
 @export var angle_speed := 10.
 
 @onready var character_mesh := $Character as Node3D
+@onready var move_timer := $MoveDelayTimer as Timer
+@onready var floor_detector := $FloorDetector as RayCast3D
 @onready var particles_trail := $GPUParticlesTrail as GPUParticles3D
 @onready var sound_footsteps := $SoundFootsteps as AudioStreamPlayer
 @onready var animation := $Character/AnimationPlayer as AnimationPlayer
-@onready var move_timer := $MoveDelayTimer as Timer
-@onready var floor_detector := $FloorDetector as RayCast3D
+@onready var fall_animation_player: AnimationPlayer = $AnimationPlayer as AnimationPlayer
 
-const ROTATIONS := {Vector3.FORWARD: 0., Vector3.BACK: PI, Vector3.LEFT: 0.5 * PI, Vector3.RIGHT: 1.5 * PI, Vector3.ZERO: 0.}
+enum MOVE_SET {FORWARD, LEFT, RIGHT}
+const ROTATIONS := {Vector3.FORWARD: 0, Vector3.BACK: PI, Vector3.LEFT: 0.5 * PI, Vector3.RIGHT: 1.5 * PI}
+const ROTATE_LEFT := {Vector3.FORWARD: Vector3.LEFT, Vector3.LEFT: Vector3.BACK, Vector3.BACK: Vector3.RIGHT, Vector3.RIGHT: Vector3.FORWARD}
+const ROTATE_RIGHT := {Vector3.FORWARD: Vector3.RIGHT, Vector3.LEFT: Vector3.FORWARD, Vector3.BACK: Vector3.LEFT, Vector3.RIGHT: Vector3.BACK}
+
 var movement_velocity: Vector3
 var rotation_direction := Vector3.FORWARD
 var target_position := Vector3.ZERO
-var _move_sequence: Array[Vector3]
+var _move_sequence: Array[MOVE_SET]
 var coins := 0
-var moving := false
 var dead := false
+var received_moves := false
 
 
-func _physics_process(delta):
-	if not move_timer.is_stopped():  # This creates the feel of step-by-step movement
+func _process(delta: float) -> void:
+	if not move_timer.is_stopped() or not received_moves:  # This creates the feel of step-by-step movement
+		animation.play("idle")
 		return
 
 	if not floor_detector.is_colliding() and not dead: # TODO
@@ -39,29 +45,42 @@ func _physics_process(delta):
 
 	# Move the player
 	var delta_pos = position - target_position
-	_select_new_position(delta_pos)
+	var delta_rot = abs(angle_difference(character_mesh.rotation.y, ROTATIONS[rotation_direction]))
+	if delta_pos.length() <= 0.001 and delta_rot <= 0.01 and _move_sequence.size():
+		move_timer.start()
+		_select_new_position()
+		return
+	elif delta_pos.length() <= 0.001 and delta_rot <= 0.01 and received_moves:  # sequence ran out
+		received_moves = false
+		if not dead:
+			sequence_finished.emit()
+
 	position = position.move_toward(target_position, movement_speed * delta)
 	character_mesh.rotation.y = lerp_angle(character_mesh.rotation.y, ROTATIONS[rotation_direction], delta * angle_speed)
 
-	_handle_effects(delta_pos)
+	_handle_effects(position - target_position)
 
 
-func _select_new_position(delta_pos: Vector3):
-	if delta_pos.length() <= 0.001 and _move_sequence.size():
-		rotation_direction = _move_sequence.pop_front()
+func angle_difference(angle1, angle2):
+	var diff = angle2 - angle1
+	return diff if abs(diff) < 180 else diff + (360 * -sign(diff))
+
+
+func _select_new_position():
+	var next_move = _move_sequence.pop_front()
+	if next_move == MOVE_SET.FORWARD:
 		target_position += rotation_direction
-		move_timer.start()
-	elif delta_pos.length() <= 0.001 and moving == true:
-		moving = false
-		if not dead:
-			sequence_finished.emit()
+	elif next_move == MOVE_SET.LEFT:
+		rotation_direction = ROTATE_LEFT[rotation_direction]
+	elif next_move == MOVE_SET.RIGHT:
+		rotation_direction = ROTATE_RIGHT[rotation_direction]
 
 
 func _handle_falling():
 	dead = true
 	_move_sequence.clear()
+	fall_animation_player.play("falling")
 	player_died.emit()
-	animation.play("jump")
 
 
 func _handle_effects(delta_pos):
@@ -75,11 +94,6 @@ func _handle_effects(delta_pos):
 		sound_footsteps.stream_paused = true
 
 
-func collect_coin():
-	coins += 1
-	coin_collected.emit(coins)
-
-
-func add_sequence(new_sequence: Array[Vector3]):
+func add_sequence(new_sequence: Array[MOVE_SET]):
 	_move_sequence = new_sequence
-	moving = true
+	received_moves = true
