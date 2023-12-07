@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dfpisimsgf5ce" path="res://objects/coin.tscn" id="7_e4x7c"]
 [ext_resource type="PackedScene" uid="uid://b5o16873df3mx" path="res://objects/flag.tscn" id="8_2rhvb"]
 [ext_resource type="PackedScene" uid="uid://bofi3sthdubh8" path="res://gui/hud.tscn" id="9_v7bp0"]
-[ext_resource type="AudioStream" uid="uid://c1imfi6nnx7vc" path="res://assets/sounds/success-fanfare-trumpets-6185.ogg" id="10_xcxxg"]
 [ext_resource type="AudioStream" uid="uid://bo52ytw5kyp3g" path="res://assets/sounds/fail-144746.mp3" id="11_exmwv"]
+[ext_resource type="AudioStream" uid="uid://bh664x02lt8" path="res://assets/sounds/success-1-6297.ogg" id="11_vt6pa"]
 
 [node name="Level_01" type="Node3D"]
 script = ExtResource("1_yusgv")
@@ -87,7 +87,7 @@ shadow_opacity = 0.75
 [node name="HUD" parent="." instance=ExtResource("9_v7bp0")]
 
 [node name="VictorySound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_xcxxg")
+stream = ExtResource("11_vt6pa")
 volume_db = -10.0
 
 [node name="LoseSound" type="AudioStreamPlayer" parent="."]

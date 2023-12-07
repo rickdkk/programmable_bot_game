@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bofi3sthdubh8"]
+[gd_scene load_steps=26 format=3 uid="uid://bofi3sthdubh8"]
 
 [ext_resource type="Script" path="res://gui/hud.gd" id="1_wbmrn"]
 [ext_resource type="Texture2D" uid="uid://d0pubx125df61" path="res://assets/sprites/Button_small.png" id="2_k85o2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3hlbhn1suwnk" path="res://gui/resources/right_arrow.tres" id="4_mw0nk"]
 [ext_resource type="Texture2D" uid="uid://uart0hpoghpr" path="res://gui/resources/up_arrow.tres" id="5_o32ta"]
 [ext_resource type="Texture2D" uid="uid://bp66kib0laf0y" path="res://gui/resources/delete_gray.tres" id="7_huxj8"]
+[ext_resource type="LabelSettings" uid="uid://bb1djvxcplfms" path="res://gui/resources/hud_label_settings.tres" id="9_b7bsd"]
 [ext_resource type="PackedScene" uid="uid://rgwhk65t7r1k" path="res://gui/scrolling_text_box.tscn" id="10_fxmdk"]
 [ext_resource type="AudioStream" uid="uid://dsvfritp7unlk" path="res://assets/sounds/button-124476-shorter.ogg" id="11_d8eoq"]
 
@@ -54,20 +55,21 @@ region = Rect2(1751, 268, 91, 95)
 [sub_resource type="LabelSettings" id="LabelSettings_38ys3"]
 font = ExtResource("3_desw5")
 font_size = 56
-shadow_color = Color(0, 0, 0, 0.376471)
+shadow_color = Color(0, 0, 0, 0.482353)
 shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ygvvi"]
 font = ExtResource("3_desw5")
 font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_wqad2"]
-font = ExtResource("3_desw5")
-font_size = 50
+shadow_size = 5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pqcdm"]
 atlas = ExtResource("2_k85o2")
 region = Rect2(1547, 159, 90, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h54bi"]
+atlas = ExtResource("2_k85o2")
+region = Rect2(1649, 159, 90, 95)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_wbmrn")
@@ -160,7 +162,7 @@ offset_right = 92.5
 offset_bottom = 74.0
 grow_horizontal = 2
 text = "Level"
-label_settings = SubResource("LabelSettings_wqad2")
+label_settings = ExtResource("9_b7bsd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -203,6 +205,27 @@ offset_bottom = 111.0
 grow_horizontal = 0
 scale = Vector2(0.7, 0.7)
 texture_normal = SubResource("AtlasTexture_pqcdm")
+texture_pressed = SubResource("AtlasTexture_h54bi")
+
+[node name="MessageLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("9_b7bsd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="MessageLabel"]
+wait_time = 2.0
+one_shot = true
 
 [connection signal="pressed" from="InputHBox/GoButton" to="." method="_on_go_button_pressed"]
 [connection signal="pressed" from="InputHBox/LeftButton" to="." method="_on_left_button_pressed"]
