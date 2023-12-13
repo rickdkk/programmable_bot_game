@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpuk5n8edgyki"]
+[gd_scene load_steps=14 format=3 uid="uid://cpuk5n8edgyki"]
 
-[ext_resource type="Script" path="res://gui/intro_screen.gd" id="1_p8snu"]
+[ext_resource type="Script" path="res://gui/intro_screen/intro_screen.gd" id="1_p8snu"]
 [ext_resource type="PackedScene" uid="uid://rgwhk65t7r1k" path="res://gui/scrolling_text_box.tscn" id="2_0mtep"]
 [ext_resource type="Texture2D" uid="uid://dxv0fyycpdmev" path="res://assets/images/intro_background.png" id="2_iyi26"]
+[ext_resource type="Resource" uid="uid://bfrat8e6yvdan" path="res://gui/intro_screen/intro_screen_dialog.tres" id="2_p2ip2"]
 [ext_resource type="Texture2D" uid="uid://d0pubx125df61" path="res://assets/sprites/Button_small.png" id="3_ntclw"]
 [ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="4_vikpf"]
 
@@ -77,7 +78,7 @@ tracks/0/path = NodePath("ScrollingTextBox:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2.5, 4),
+"times": PackedFloat32Array(2, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(448, -332), Vector2(448, 237)]
@@ -115,6 +116,7 @@ _data = {
 
 [node name="IntroScreen" type="CanvasLayer"]
 script = ExtResource("1_p8snu")
+intro_dialog = ExtResource("2_p2ip2")
 
 [node name="IntroBackground" type="Sprite2D" parent="."]
 position = Vector2(960, 360)

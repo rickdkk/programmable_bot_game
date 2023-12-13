@@ -1,7 +1,6 @@
 extends CanvasLayer
 class_name HUD
 
-signal actions_changed(current_actions: Array[Player.MOVE_SET])
 signal go_button_pressed(current_actions: Array[Player.MOVE_SET])
 
 @onready var coin_label := $Coins as Label
@@ -20,10 +19,12 @@ const SPRITES = {Player.MOVE_SET.FORWARD: preload("res://gui/resources/up_arrow.
 				 Player.MOVE_SET.LEFT: preload("res://gui/resources/left_arrow.tres"),
 				 Player.MOVE_SET.RIGHT: preload("res://gui/resources/right_arrow.tres")}
 var actions: Array[Player.MOVE_SET]
+var current_action := -1
 
 
 func _ready() -> void:
 	SignalBus.score_changed.connect(_on_player_coin_collected)
+	SignalBus.player_selected_move.connect(_flash_current_action)
 	message_timer.timeout.connect(_clear_message)
 
 
@@ -36,18 +37,16 @@ func _on_player_coin_collected(coins: int) -> void:
 
 
 func add_arrow(action: Player.MOVE_SET):
+	button_sound.play()
 	var new_rect = TextureRect.new()
 	new_rect.texture = SPRITES[action]
 	new_rect.flip_h = action == Player.MOVE_SET.LEFT
 	actions_box.add_child(new_rect)
 	actions_box.move_child(new_rect, 0)
-
 	actions.append(action)
-	actions_changed.emit(actions)
 
 	go_button.disabled = false
 	delete_button.disabled = false
-	button_sound.play()
 
 
 func disable_input():
@@ -64,7 +63,6 @@ func _on_delete_button_pressed() -> void:
 	if actions_box.get_child_count():
 		actions_box.get_child(0).queue_free()
 		actions.pop_back()
-		actions_changed.emit(actions)
 
 	if not actions.size():
 		go_button.disabled = true
@@ -92,6 +90,8 @@ func display_text(text_buffer: Array[String]) -> void:
 	disable_input()
 	for text in text_buffer:
 		scrolling_text_box.add_new_text(text)
+	scrolling_text_box.show()
+	scrolling_text_box.display_next_text()
 
 
 func display_message(text: String, duration: float = 2.0) -> void:
@@ -105,3 +105,21 @@ func _clear_message() -> void:
 
 func set_level_text(text: String) -> void:
 	level_label.text = text
+
+
+func flash_ui_element(element, n_flashes := 2) -> void:
+	var tween = get_tree().create_tween()
+	for _idx in n_flashes:
+		tween.tween_property(element, "modulate:a", 0, 0.1)
+		tween.tween_property(element, "modulate:a", 1, 0.1)
+	tween.play()
+
+
+func _flash_current_action() -> void:
+	var target = actions_box.get_child(current_action)
+	flash_ui_element(target)
+	current_action -= 1
+
+
+func _on_scrolling_text_box_buffer_empty() -> void:
+	enable_input()

@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7t8m6hm2g0b1"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_ktbc8"]
+[ext_resource type="Environment" uid="uid://bqnqgflivjvue" path="res://assets/main-environment.tres" id="3_u3tf3"]
+[ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://player/player.tscn" id="4_yrc2u"]
+[ext_resource type="Script" path="res://player/view.gd" id="5_k8eqn"]
+[ext_resource type="PackedScene" uid="uid://b5o16873df3mx" path="res://objects/flag.tscn" id="9_ugfoy"]
+[ext_resource type="PackedScene" uid="uid://bofi3sthdubh8" path="res://gui/hud.tscn" id="10_g0gej"]
+[ext_resource type="AudioStream" uid="uid://bh664x02lt8" path="res://assets/sounds/success-1-6297.ogg" id="11_j3n6k"]
+[ext_resource type="AudioStream" uid="uid://bo52ytw5kyp3g" path="res://assets/sounds/fail-144746.mp3" id="12_ve2ak"]
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_ktbc8")
+level_name = "Level"
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_u3tf3")
+
+[node name="Player" parent="." instance=ExtResource("4_yrc2u")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0)
+
+[node name="View" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906307, 3.83787e-07, 0, -0.219982)
+script = ExtResource("5_k8eqn")
+target = NodePath("../Player")
+
+[node name="Camera" type="Camera3D" parent="View"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+current = true
+fov = 40.0
+
+[node name="World" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Platforms" type="Node3D" parent="World"]
+
+[node name="Clouds" type="Node3D" parent="World"]
+
+[node name="Coins" type="Node3D" parent="World"]
+
+[node name="Flag" parent="World" instance=ExtResource("9_ugfoy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.80136e-07, 0, 2.25)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.422618, 0.694272, -0.582564, -1.2595e-08, 0.642788, 0.766044, 0.906308, -0.323744, 0.271654, -1.15136e-06, -1, -17.78)
+shadow_enabled = true
+shadow_opacity = 0.75
+
+[node name="HUD" parent="." instance=ExtResource("10_g0gej")]
+
+[node name="VictorySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_j3n6k")
+volume_db = -10.0
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ve2ak")
+volume_db = -10.0
+
+[connection signal="coin_collected" from="Player" to="HUD" method="_on_player_coin_collected"]
+[connection signal="sequence_finished" from="Player" to="." method="_on_player_sequence_finished"]
+[connection signal="body_entered" from="World/Flag" to="." method="_on_flag_body_entered"]
+[connection signal="go_button_pressed" from="HUD" to="." method="_on_hud_go_button_pressed"]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://bfrat8e6yvdan"]
+
+[ext_resource type="Script" path="res://levels/dialog/dialog_resource.gd" id="1_cuhw1"]
+
+[resource]
+script = ExtResource("1_cuhw1")
+start_dialog = Array[String](["Hallo allemaal!
+
+In dit spel gaan we jullie iets vertellen over program-meren en kunstmatige intelligentie.", "Het is tegenwoordig erg druk in de zorg! Er zijn heel veel patiënten, maar niet zo veel dokters.
+
+We willen zo veel mogelijk mensen helpen..", "In dit spel gaan we een robot maken die de dokters kan helpen. De robot is alleen nog niet zo slim...
+
+Hier hebben we jullie hulp voor nodig!", "Jullie gaan de robot helpen om zijn weg door het ziekenhuis te vinden. Je kan met de muis op de knoppen drukken. Vraag dedocent voor hulp als je vast zit!", "Aan de slag!"])
+finish_dialog = Array[String]([])

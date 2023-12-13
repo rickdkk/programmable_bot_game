@@ -9,10 +9,10 @@ var time := 0.0
 func _on_body_entered(body):
 	if body.name == "Player":
 		SignalBus.coin_collected.emit()
-		audio_player.play()
 		self.visible = false
+		audio_player.play()
 		await audio_player.finished
-		call_deferred("queue_free")
+		queue_free()
 
 
 func _process(delta):

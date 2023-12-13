@@ -2,7 +2,7 @@ extends Node3D
 class_name Level
 
 signal finished
-signal player_died
+signal player_death_finished
 
 @export var dialog_resource: DialogResource  ## Start and end dialog that should be played in the scrolling text box
 @export var level_name: String  ## Name you want to appear in the HUD
@@ -10,12 +10,15 @@ signal player_died
 @onready var victory_sound := $VictorySound as AudioStreamPlayer
 @onready var lose_sound := $LoseSound as AudioStreamPlayer
 @onready var player := $Player as Player
-@onready var hud: HUD = $HUD
+@onready var hud := $HUD as HUD
 
 var level_finished := false
 
 
 func _ready() -> void:
+	SignalBus.player_died.connect(_on_player_player_died)
+	if dialog_resource != null and dialog_resource.start_dialog:
+		hud.display_text(dialog_resource.start_dialog)
 	hud.set_level_text(level_name if level_name else str(name))
 
 
@@ -42,8 +45,7 @@ func _on_player_player_died() -> void:
 
 
 func _lose() -> void:
-	if level_finished:
-		return
 	lose_sound.play()
 	await lose_sound.finished
-	player_died.emit()
+	player_death_finished.emit()
+	# TODO: subtract coins

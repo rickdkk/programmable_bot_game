@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://oppwsy61ipi"]
+
+[ext_resource type="Script" path="res://levels/dialog/dialog_resource.gd" id="1_ucdtc"]
+
+[resource]
+script = ExtResource("1_ucdtc")
+start_dialog = Array[String](["Dat gaat heel goed! Laten we wat moeilijkere levels proberen."])
+finish_dialog = Array[String]([])

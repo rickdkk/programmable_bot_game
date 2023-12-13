@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DialogResource" load_steps=2 format=3 uid="uid://bkl8b3x1gqsjb"]
+
+[ext_resource type="Script" path="res://levels/dialog/dialog_resource.gd" id="1_k0cmd"]
+
+[resource]
+script = ExtResource("1_k0cmd")
+start_dialog = Array[String](["In dit level moet de robot ook de bocht om. Je kan de robot laten draaien met de ronde pijltjes!"])
+finish_dialog = Array[String]([])

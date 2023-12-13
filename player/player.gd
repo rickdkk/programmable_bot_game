@@ -3,7 +3,6 @@ class_name Player
 
 signal coin_collected
 signal sequence_finished
-signal player_died
 
 @export_subgroup("Components")
 @export var view: Node3D
@@ -46,11 +45,10 @@ func _process(delta: float) -> void:
 	# Move the player
 	var delta_pos = position - target_position
 	var delta_rot = abs(angle_difference(character_mesh.rotation.y, ROTATIONS[rotation_direction]))
-	if delta_pos.length() <= 0.001 and delta_rot <= 0.01 and _move_sequence.size():
-		move_timer.start()
+	if delta_pos.length() <= 0.001 and delta_rot <= 0.1 and _move_sequence.size():
 		_select_new_position()
 		return
-	elif delta_pos.length() <= 0.001 and delta_rot <= 0.01 and received_moves:  # sequence ran out
+	elif delta_pos.length() <= 0.001 and delta_rot <= 0.1 and received_moves:  # sequence ran out
 		received_moves = false
 		if not dead:
 			sequence_finished.emit()
@@ -69,18 +67,23 @@ func angle_difference(angle1, angle2):
 func _select_new_position():
 	var next_move = _move_sequence.pop_front()
 	if next_move == MOVE_SET.FORWARD:
+		move_timer.start()
 		target_position += rotation_direction
 	elif next_move == MOVE_SET.LEFT:
+		move_timer.start(0.2)
 		rotation_direction = ROTATE_LEFT[rotation_direction]
 	elif next_move == MOVE_SET.RIGHT:
+		move_timer.start(0.2)
 		rotation_direction = ROTATE_RIGHT[rotation_direction]
+	await move_timer.timeout
+	SignalBus.player_selected_move.emit()
 
 
 func _handle_falling():
 	dead = true
 	_move_sequence.clear()
 	fall_animation_player.play("falling")
-	player_died.emit()
+	SignalBus.player_died.emit()
 
 
 func _handle_effects(delta_pos):

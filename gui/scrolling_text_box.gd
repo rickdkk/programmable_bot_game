@@ -5,7 +5,7 @@ signal buffer_empty
 
 @onready var _text_label := $RichTextLabel as RichTextLabel
 @onready var next_sprite := $NextSprite as Sprite2D
-@onready var typing_sound: AudioStreamPlayer = $TypingSound
+@onready var typing_sound := $TypingSound as AudioStreamPlayer
 
 var text_buffer: Array[String] = []
 
@@ -19,24 +19,24 @@ func _process(_delta: float) -> void:
 	else:
 		next_sprite.hide()
 
-	var button_pressed = (Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT))
+	var button_pressed = Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	if  button_pressed and _text_label.visible_ratio == 1.0:
 		if not text_buffer:
 			self.hide()
 			buffer_empty.emit()
 		else:
-			_display_next_text()
+			display_next_text()
 
 
 func add_new_text(text: String, display_next: bool = false):
 	text_buffer.append(text)
 
 	if display_next:
-		_display_next_text()
+		display_next_text()
 		self.show()
 
 
-func _display_next_text():
+func display_next_text():
 	var next_text: String = text_buffer.pop_front()
 	_text_label.text = next_text
 	_text_label.visible_ratio = 0

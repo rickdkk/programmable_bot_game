@@ -26,10 +26,6 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
-[editor]
-
-movie_writer/movie_file="C:/Users/Kenney/Desktop/video-footage.avi"
-
 [input]
 
 camera_left={

@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_od38h")
-start_dialog = Array[String](["Hallo allemaal, welkom bij dit geweldige spel", "Het kan allemaal nog veel mooier", "Ga nu maar even het level doen!"])
+start_dialog = Array[String](["Welkom in het eerste level. We gaan de robot helpen om te navigeren in een oefenomgeving.", "Je kan de robot besturen met de koppen hieronder. Met de pijltjes kan je een actie selecteren. Met het vinkje kan je de oplossing naar de robot versturen.", "Zet hem op!"])
 finish_dialog = Array[String]([])

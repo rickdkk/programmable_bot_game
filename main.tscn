@@ -1,17 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://owwucw8olij2"]
+[gd_scene load_steps=9 format=3 uid="uid://owwucw8olij2"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_o8tir"]
-[ext_resource type="PackedScene" uid="uid://cpuk5n8edgyki" path="res://gui/intro_screen.tscn" id="2_3allu"]
+[ext_resource type="PackedScene" uid="uid://cpuk5n8edgyki" path="res://gui/intro_screen/intro_screen.tscn" id="2_3allu"]
+[ext_resource type="PackedScene" uid="uid://sc1wjx4jxlk5" path="res://levels/level_01.tscn" id="2_wvnh6"]
+[ext_resource type="PackedScene" uid="uid://bac4ibwbsnif6" path="res://levels/level_02.tscn" id="3_jrqdy"]
 [ext_resource type="AudioStream" uid="uid://c78b0omsucqp6" path="res://assets/sounds/8-bit-arcade-138828.ogg" id="3_nt25j"]
+[ext_resource type="PackedScene" uid="uid://bjv8frwk8gkob" path="res://levels/level_03.tscn" id="4_dr7bm"]
+[ext_resource type="PackedScene" uid="uid://cmmh1v5aj5cdc" path="res://levels/level_04.tscn" id="5_df0rf"]
+[ext_resource type="PackedScene" uid="uid://bxxxhbs64vt2r" path="res://levels/level_05.tscn" id="6_yinqq"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_o8tir")
+levels = Array[PackedScene]([ExtResource("2_wvnh6"), ExtResource("3_jrqdy"), ExtResource("4_dr7bm"), ExtResource("5_df0rf"), ExtResource("6_yinqq")])
 
 [node name="IntroScreen" parent="." instance=ExtResource("2_3allu")]
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_nt25j")
-volume_db = -15.0
+volume_db = -17.0
 autoplay = true
 
 [connection signal="play_button_pressed" from="IntroScreen" to="." method="_on_intro_screen_play_button_pressed"]

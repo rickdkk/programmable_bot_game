@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dfpisimsgf5ce"]
 
-[ext_resource type="Script" path="res://objects/coin.gd" id="1_f0t16"]
+[ext_resource type="Script" path="res://objects/coin/coin.gd" id="1_f0t16"]
 [ext_resource type="Texture2D" uid="uid://0odt7cvj574e" path="res://assets/models/Textures/colormap.png" id="2_cibap"]
 [ext_resource type="Material" uid="uid://rt0yc1o43psl" path="res://objects/coin/coin_material.tres" id="3_cc17a"]
 [ext_resource type="QuadMesh" uid="uid://cgygckhik6y1g" path="res://objects/coin/coin.tres" id="4_idsvg"]

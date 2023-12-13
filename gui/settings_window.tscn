@@ -1,0 +1,224 @@
+[gd_scene load_steps=17 format=3 uid="uid://dba0ykxgx6h3v"]
+
+[ext_resource type="Texture2D" uid="uid://k5pnxrk3bxq" path="res://assets/sprites/boxes.png" id="1_b01pn"]
+[ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="2_nspec"]
+[ext_resource type="Texture2D" uid="uid://d0pubx125df61" path="res://assets/sprites/Button_small.png" id="3_dulhm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jjco"]
+atlas = ExtResource("1_b01pn")
+region = Rect2(434, 1416, 303, 422)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3p1t"]
+font = ExtResource("2_nspec")
+font_size = 27
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.839216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa6vm"]
+atlas = ExtResource("1_b01pn")
+region = Rect2(1770, 1421, 214, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqyw0"]
+atlas = ExtResource("1_b01pn")
+region = Rect2(1779, 1506, 49, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoe8n"]
+atlas = ExtResource("1_b01pn")
+region = Rect2(1832, 1523, 143, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i21g0"]
+atlas = ExtResource("1_b01pn")
+region = Rect2(1832, 1505, 75, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_idbls"]
+font = ExtResource("2_nspec")
+font_size = 14
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.462745)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l6p2"]
+atlas = ExtResource("1_b01pn")
+region = Rect2(1747, 2402, 172, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb5p3"]
+atlas = ExtResource("3_dulhm")
+region = Rect2(1074, 922, 91, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7ojl"]
+atlas = ExtResource("3_dulhm")
+region = Rect2(1279, 922, 90, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdmx5"]
+atlas = ExtResource("3_dulhm")
+region = Rect2(1074, 1031, 91, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_166cw"]
+atlas = ExtResource("3_dulhm")
+region = Rect2(1279, 1031, 90, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrve8"]
+atlas = ExtResource("3_dulhm")
+region = Rect2(1074, 1140, 91, 95)
+
+[node name="SettingsWindow" type="CanvasLayer"]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 303.0
+offset_bottom = 422.0
+scale = Vector2(1, 0.7)
+texture = SubResource("AtlasTexture_6jjco")
+
+[node name="SettingsLabel" type="Label" parent="."]
+offset_left = 80.0
+offset_right = 220.0
+offset_bottom = 31.0
+text = "Instellingen"
+label_settings = SubResource("LabelSettings_v3p1t")
+
+[node name="MusicSection" type="CanvasLayer" parent="."]
+
+[node name="TextureRect2" type="TextureRect" parent="MusicSection"]
+offset_left = 28.0
+offset_top = 60.0
+offset_right = 250.0
+offset_bottom = 130.0
+texture = SubResource("AtlasTexture_pa6vm")
+
+[node name="TextureRect" type="TextureRect" parent="MusicSection/TextureRect2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 57.0
+offset_bottom = 59.0
+texture = SubResource("AtlasTexture_iqyw0")
+
+[node name="TextureRect2" type="TextureRect" parent="MusicSection/TextureRect2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 19.0
+offset_right = 207.0
+offset_bottom = 59.0
+texture = SubResource("AtlasTexture_uoe8n")
+
+[node name="TextureRect3" type="TextureRect" parent="MusicSection/TextureRect2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 2.0
+offset_right = 139.0
+offset_bottom = 18.0
+texture = SubResource("AtlasTexture_i21g0")
+
+[node name="Label" type="Label" parent="MusicSection/TextureRect2/TextureRect3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -8.5
+offset_right = 36.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Muziek"
+label_settings = SubResource("LabelSettings_idbls")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicProgressBar" type="TextureProgressBar" parent="MusicSection"]
+offset_left = 94.0
+offset_top = 83.0
+offset_right = 266.0
+offset_bottom = 107.0
+scale = Vector2(0.8, 1.3)
+value = 100.0
+texture_progress = SubResource("AtlasTexture_1l6p2")
+
+[node name="MusicButton" type="TextureButton" parent="MusicSection"]
+offset_left = 40.0
+offset_top = 73.0
+offset_right = 131.0
+offset_bottom = 168.0
+scale = Vector2(0.46, 0.46)
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_vb5p3")
+texture_pressed = SubResource("AtlasTexture_f7ojl")
+
+[node name="SoundSection" type="CanvasLayer" parent="."]
+
+[node name="TextureRect2" type="TextureRect" parent="SoundSection"]
+offset_left = 28.0
+offset_top = 137.0
+offset_right = 250.0
+offset_bottom = 207.0
+texture = SubResource("AtlasTexture_pa6vm")
+
+[node name="TextureRect" type="TextureRect" parent="SoundSection/TextureRect2"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 57.0
+offset_bottom = 59.0
+texture = SubResource("AtlasTexture_iqyw0")
+
+[node name="TextureRect2" type="TextureRect" parent="SoundSection/TextureRect2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 19.0
+offset_right = 207.0
+offset_bottom = 59.0
+texture = SubResource("AtlasTexture_uoe8n")
+
+[node name="TextureRect3" type="TextureRect" parent="SoundSection/TextureRect2"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 2.0
+offset_right = 139.0
+offset_bottom = 18.0
+texture = SubResource("AtlasTexture_i21g0")
+
+[node name="Label" type="Label" parent="SoundSection/TextureRect2/TextureRect3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -8.5
+offset_right = 36.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Geluiden"
+label_settings = SubResource("LabelSettings_idbls")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundProgressBar" type="TextureProgressBar" parent="SoundSection"]
+offset_left = 94.0
+offset_top = 160.0
+offset_right = 266.0
+offset_bottom = 184.0
+scale = Vector2(0.8, 1.3)
+value = 100.0
+texture_progress = SubResource("AtlasTexture_1l6p2")
+
+[node name="SoundButton" type="TextureButton" parent="SoundSection"]
+offset_left = 40.0
+offset_top = 150.0
+offset_right = 131.0
+offset_bottom = 245.0
+scale = Vector2(0.46, 0.46)
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_bdmx5")
+texture_pressed = SubResource("AtlasTexture_166cw")
+
+[node name="FinishedButton" type="TextureButton" parent="."]
+offset_left = 40.0
+offset_top = 212.0
+offset_right = 131.0
+offset_bottom = 307.0
+scale = Vector2(0.46, 0.46)
+texture_normal = SubResource("AtlasTexture_jrve8")
