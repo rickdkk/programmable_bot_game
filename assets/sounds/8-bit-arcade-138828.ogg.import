@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/8-bit-arcade-138828.ogg-0564159fc6dd2dd029b3a
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
