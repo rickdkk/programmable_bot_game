@@ -10,5 +10,5 @@ In dit spel gaan we jullie iets vertellen over program-meren en kunstmatige inte
 
 We willen zo veel mogelijk mensen helpen..", "In dit spel gaan we een robot maken die de dokters kan helpen. De robot is alleen nog niet zo slim...
 
-Hier hebben we jullie hulp voor nodig!", "Jullie gaan de robot helpen om zijn weg door het ziekenhuis te vinden. Je kan met de muis op de knoppen drukken. Vraag dedocent voor hulp als je vast zit!", "Aan de slag!"])
+Hier hebben we jullie hulp voor nodig!", "Jullie gaan de robot helpen om zijn weg door het ziekenhuis te vinden. Je kan met de muis op de knoppen drukken. Vraag de docent voor hulp als je vast zit!", "Aan de slag!"])
 finish_dialog = Array[String]([])

@@ -5,6 +5,7 @@ extends Node
 @onready var intro_screen := $IntroScreen as IntroScreen
 
 var current_level: Level
+var current_level_score := 0
 var current_level_scene: PackedScene
 var coins: int
 
@@ -29,11 +30,14 @@ func load_next_level():
 	if current_level:
 		current_level.queue_free()
 
+	current_level_score = 0
 	current_level_scene = levels.pop_front()
 	load_level(current_level_scene)
 
 
 func reload_level():
+	coins -= current_level_score
+	current_level_score = 0
 	current_level.queue_free()
 	load_level(current_level_scene)
 
@@ -53,4 +57,5 @@ func _on_intro_screen_play_button_pressed() -> void:
 
 func _on_coin_collected():
 	coins += 1
+	current_level_score += 1
 	SignalBus.score_changed.emit(coins)

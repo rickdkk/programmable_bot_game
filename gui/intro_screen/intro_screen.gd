@@ -12,6 +12,7 @@ signal play_button_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	scrolling_text_box.set_process_input(false)
 	animation_player.play("start_game")
 	await animation_player.animation_finished
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	scrolling_text_box.add_new_text(intro_dialog.start_dialog[0], true)
 	for text in intro_dialog.start_dialog.slice(1):
 		scrolling_text_box.add_new_text(text)
+	scrolling_text_box.set_process_input(true)
 
 
 func _on_instruction_finished():

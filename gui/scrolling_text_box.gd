@@ -3,6 +3,10 @@ class_name ScrollingDialogBox
 
 signal buffer_empty
 
+## Scrolling speed in characters per second
+@export var scrolling_speed := 40.0
+@export var minimum_duration := 0.8
+
 @onready var _text_label := $RichTextLabel as RichTextLabel
 @onready var next_sprite := $NextSprite as Sprite2D
 @onready var typing_sound := $TypingSound as AudioStreamPlayer
@@ -10,16 +14,14 @@ signal buffer_empty
 var text_buffer: Array[String] = []
 
 
-func _process(_delta: float) -> void:
-	if not visible:
-		return
+func _input(event: InputEvent) -> void:
+	var button_pressed = false
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			button_pressed = true
+	elif event.is_action_pressed("ui_accept"):
+		button_pressed = true
 
-	if _text_label.visible_ratio == 1.0:
-		next_sprite.show()
-	else:
-		next_sprite.hide()
-
-	var button_pressed = Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	if  button_pressed and _text_label.visible_ratio == 1.0:
 		if not text_buffer:
 			self.hide()
@@ -37,11 +39,17 @@ func add_new_text(text: String, display_next: bool = false):
 
 
 func display_next_text():
+	next_sprite.hide()
+	typing_sound.play()
+
 	var next_text: String = text_buffer.pop_front()
 	_text_label.text = next_text
 	_text_label.visible_ratio = 0
-	typing_sound.play()
+
+	var duration = max(minimum_duration, len(next_text) / scrolling_speed)
 	var tween = create_tween()
-	tween.tween_property(_text_label, "visible_ratio", 1.0, 1.5)
+	tween.tween_property(_text_label, "visible_ratio", 1.0, duration)
 	await tween.finished
+
+	next_sprite.show()
 	typing_sound.stop()

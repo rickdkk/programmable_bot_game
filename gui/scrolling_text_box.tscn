@@ -84,6 +84,7 @@ autowrap_mode = 2
 visible_characters_behavior = 1
 
 [node name="NextSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(332, 212)
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("4_jwunf")
