@@ -1,0 +1,129 @@
+[gd_scene load_steps=15 format=3 uid="uid://btt7ie7nss83l"]
+
+[ext_resource type="Script" path="res://gui/loop_widget.gd" id="1_njw6b"]
+[ext_resource type="Texture2D" uid="uid://cq7mlys76srmd" path="res://assets/sprites/Button.png" id="1_pgtl6"]
+[ext_resource type="FontFile" uid="uid://d0cxd77jybrcn" path="res://assets/fonts/lilita_one_regular.ttf" id="2_0c1vg"]
+[ext_resource type="Texture2D" uid="uid://444046gaxmst" path="res://gui/resources/go_button.tres" id="3_feowl"]
+[ext_resource type="Texture2D" uid="uid://dumcg2xdpxt0l" path="res://gui/resources/delete_button.tres" id="3_ti7l2"]
+[ext_resource type="Texture2D" uid="uid://bp66kib0laf0y" path="res://gui/resources/delete_gray.tres" id="4_633s1"]
+[ext_resource type="Texture2D" uid="uid://chwj6hsvfmqjf" path="res://gui/resources/go_button_green.tres" id="4_j6tmx"]
+[ext_resource type="Texture2D" uid="uid://csap3fngxbnpl" path="res://gui/resources/go_button_gray.tres" id="5_33r40"]
+[ext_resource type="Texture2D" uid="uid://ci0b6hsjkqps1" path="res://gui/resources/empty_button.tres" id="9_erji4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ry77v"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqn7v"]
+atlas = ExtResource("1_pgtl6")
+region = Rect2(197, 1408, 181, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulu63"]
+atlas = ExtResource("1_pgtl6")
+region = Rect2(197, 1626, 181, 189)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmu7e"]
+atlas = ExtResource("1_pgtl6")
+region = Rect2(173, 433, 425, 189)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7jwyl"]
+font = ExtResource("2_0c1vg")
+font_size = 100
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.568627)
+
+[node name="LoopWidget" type="Control"]
+layout_mode = 3
+anchor_right = 0.606
+anchor_bottom = 0.622
+offset_right = 0.320007
+offset_bottom = 0.159973
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_njw6b")
+empty_button_texture = ExtResource("9_erji4")
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+self_modulate = Color(0.341176, 0.870588, 1, 1)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 64.0
+offset_right = 768.0
+offset_bottom = 254.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ry77v")
+
+[node name="UpButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 602.0
+offset_right = 783.0
+offset_bottom = 190.0
+texture_normal = SubResource("AtlasTexture_mqn7v")
+
+[node name="RejectButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.505155
+anchor_top = 0.700893
+anchor_right = 0.738402
+anchor_bottom = 0.983631
+offset_left = 3.05176e-05
+offset_top = -78.0
+offset_bottom = -15.6667
+texture_normal = ExtResource("3_ti7l2")
+texture_pressed = ExtResource("4_633s1")
+texture_disabled = ExtResource("4_633s1")
+metadata/_edit_use_anchors_ = true
+
+[node name="AcceptButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.268041
+anchor_top = 0.700893
+anchor_right = 0.501289
+anchor_bottom = 0.983631
+offset_left = 1.52588e-05
+offset_top = -78.0
+offset_bottom = -15.6667
+disabled = true
+texture_normal = ExtResource("3_feowl")
+texture_pressed = ExtResource("4_j6tmx")
+texture_disabled = ExtResource("5_33r40")
+
+[node name="DownButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 423.0
+offset_right = 604.0
+offset_bottom = 189.0
+texture_normal = SubResource("AtlasTexture_ulu63")
+
+[node name="LoopCountRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_qmu7e")
+
+[node name="LoopCountLabel" type="Label" parent="LoopCountRect"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 25.0
+offset_right = 279.0
+offset_bottom = 140.0
+text = "1 X"
+label_settings = SubResource("LabelSettings_7jwyl")
+
+[node name="InputRow" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 223.84
+offset_right = 758.0
+offset_bottom = 412.84
+pivot_offset = Vector2(368, 94)
+columns = 4
+
+[connection signal="pressed" from="UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="RejectButton" to="." method="_on_reject_button_pressed"]
+[connection signal="pressed" from="AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="DownButton" to="." method="_on_down_button_pressed"]
